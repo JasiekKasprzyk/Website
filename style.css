@@ -5,7 +5,6 @@
 .login-background
 {
 border: 1px solid #aaaaaa;
-padding: %;
 border-radius: 10px;
 padding: 10px;
 }
@@ -15,9 +14,14 @@ margin-left: auto;
 margin-right: auto;
 width: 75%;
 }
-.login-space:
+.login-space
 {
 	min-height: 33%;
+}
+.admin-panel-header
+{
+	background-color: #999999;
+	margin: 0;
 }
 @media (max-width: 767px) 
 {

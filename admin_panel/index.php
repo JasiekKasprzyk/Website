@@ -1,4 +1,14 @@
-<!DOCTYPE HTMP>
+<?php
+	session_start();
+	
+	if(isset($_SESSION['islogged']) && $_SESSION['islogged']==true)
+	{
+		header('Location: session.php');
+		exit();
+	}
+
+?>
+<!DOCTYPE HTML>
 <html lang="pl">
 
 <head>
@@ -26,6 +36,9 @@
 					<input type="password" name="password"/><br /><br/>
 					<input type="submit" value="Zaloguj się!" />
 					</form>
+<?php
+	if(isset($_SESSION['error'])) echo $_SESSION['error'];
+?>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 space"></div>
