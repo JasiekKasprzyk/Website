@@ -12,6 +12,7 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
+		<title>Cows are really handsome</title>
 	</head>
 	<body>
 		<form method="post">

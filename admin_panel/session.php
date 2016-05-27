@@ -31,6 +31,22 @@
 ?>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+<?php			
+	require_once "../connect.php";
+	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($connection->connect_errno!=0)
+	{
+		echo "Error: ".$connection->connect_errno;
+	}
+	else
+	{
+		
+	}
+?>			
+			</div>
+		</div>
 	</div>
 
 </body>
