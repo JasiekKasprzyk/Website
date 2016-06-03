@@ -32,8 +32,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-<?php			
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
+<?php
 	require_once "../connect.php";
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
 	if($connection->connect_errno!=0)
@@ -42,9 +42,14 @@
 	}
 	else
 	{
+		$query="SELECT id, name, category FROM articles";
+		$result->$connection->query($query);
+		$line=$result->fetch_assoc();
 		
+		
+		$connection->close();
 	}
-?>			
+?>
 			</div>
 		</div>
 	</div>

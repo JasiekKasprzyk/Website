@@ -1,6 +1,8 @@
 body
 {
 	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 .space
 {
@@ -22,6 +24,12 @@ width: 75%;
 .admin-panel-header
 {
 	background-color: #999999;
+}
+.hierarchy
+{
+	border: 1px solid #555555;
+	height: 90vh;
+	margin: 0;
 }
 
 @media (max-width: 767px) 
