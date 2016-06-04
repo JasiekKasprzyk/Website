@@ -31,8 +31,9 @@
 ?>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row row-hierarchy">
 			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
+				<table>
 <?php
 	require_once "../connect.php";
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -43,10 +44,34 @@
 	else
 	{
 		$query="SELECT id, name, category FROM articles";
-		$result->$connection->query($query);
+		$result=$connection->query($query);
+		$how_many_articles=$result->num_rows;
+		while($line=$result->fetch_assoc())
+		{
+			echo "<li>".$line['name']."(".$line['category'].")"."</li>";
+		}
+		$result->close();
+		$connection->close();
+	}
+?>
+				</table>
+			</div>
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
+<?php
+	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($connection->connect_errno!=0)
+	{
+		echo "Error: ".$connection->connect_errno;
+	}
+	else
+	{
+		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.id=1";
+		$result=$connection->query($query);
 		$line=$result->fetch_assoc();
-		
-		
+		echo "<h1>".$line['name']."</h1>";
+		echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
+		echo "<p>".$line['content']."</p>";
+		$result->close();
 		$connection->close();
 	}
 ?>

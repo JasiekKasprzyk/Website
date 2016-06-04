@@ -27,15 +27,14 @@ width: 75%;
 }
 .hierarchy
 {
-	border: 1px solid #555555;
-	height: 90vh;
 	margin: 0;
+	border: 1px solid #555555;
+	height: 100%;
 }
-
-@media (max-width: 767px) 
+@media (min-width: 768px) 
 {
-.space
+.row-hierarchy
 {
-	height: 15vh;
+	height: 90vh;
 }
 }
