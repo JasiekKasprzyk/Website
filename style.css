@@ -33,8 +33,4 @@ width: 75%;
 }
 @media (min-width: 768px) 
 {
-.row-hierarchy
-{
-	height: 90vh;
-}
 }
