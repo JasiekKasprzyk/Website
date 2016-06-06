@@ -43,12 +43,12 @@
 	}
 	else
 	{
-		$query="SELECT id, name, category FROM articles";
+		$query="SELECT id, name, category, friendlyAddress FROM articles";
 		$result=$connection->query($query);
 		$how_many_articles=$result->num_rows;
 		while($line=$result->fetch_assoc())
 		{
-			echo "<li>".$line['name']."(".$line['category'].")"."</li>";
+			echo '<li><a href="session.php?get='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></li>";
 		}
 		$result->close();
 		$connection->close();
@@ -65,7 +65,16 @@
 	}
 	else
 	{
-		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.id=1";
+		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
+		if(!isset($_GET['get']))
+		{
+			$query=$query."id=1";
+		}
+		else
+		{
+			$_GET['get']=htmlentities($_GET['get'], ENT_QUOTES, "UTF-8");
+			$query=$query.'friendlyAddress="'.$_GET['get'].'"';
+		}
 		$result=$connection->query($query);
 		$line=$result->fetch_assoc();
 		echo "<h1>".$line['name']."</h1>";
