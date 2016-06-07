@@ -48,7 +48,7 @@
 		$how_many_articles=$result->num_rows;
 		while($line=$result->fetch_assoc())
 		{
-			echo '<li><a href="session.php?get='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></li>";
+			echo '<li><a href="session.php?article='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></li>";
 		}
 		$result->close();
 		$connection->close();
@@ -66,14 +66,14 @@
 	else
 	{
 		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
-		if(!isset($_GET['get']))
+		if(!isset($_GET['article']))
 		{
 			$query=$query."id=1";
 		}
 		else
 		{
-			$_GET['get']=htmlentities($_GET['get'], ENT_QUOTES, "UTF-8");
-			$query=$query.'friendlyAddress="'.$_GET['get'].'"';
+			$_GET['article']=htmlentities($_GET['article'], ENT_QUOTES, "UTF-8");
+			$query=$query.'friendlyAddress="'.$_GET['article'].'"';
 		}
 		$result=$connection->query($query);
 		$line=$result->fetch_assoc();
