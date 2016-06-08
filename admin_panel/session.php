@@ -77,9 +77,22 @@
 		}
 		$result=$connection->query($query);
 		$line=$result->fetch_assoc();
-		echo "<h1>".$line['name']."</h1>";
-		echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
-		echo "<p>".$line['content']."</p>";
+		if(isset($_GET['get']))
+		{
+			echo "<form>";
+			echo '<input type="text" value="'.$line['name'].'"/>';
+			echo "</form";
+		}
+		else
+		{
+			echo "<h1>".$line['name']."</h1>";
+			echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
+			echo "<p>".$line['content']."</p>";
+			echo "<hr>";
+			echo '[<a href="#">Edytuj</a>]';
+			echo ' | [<a href="#">Usuń</a>]';
+			echo ' | [<a href="#">Nowy artykuł</a>]';
+		}
 		$result->close();
 		$connection->close();
 	}

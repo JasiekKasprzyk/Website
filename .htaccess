@@ -5,4 +5,3 @@ Deny from all
 </FilesMatch>
 
 RewriteEngine On
-RewriteRule ^article/([a-zA-Z]+)/ admin_panel/session.php?article=$1
