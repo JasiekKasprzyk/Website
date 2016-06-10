@@ -68,6 +68,7 @@
 		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
 		if(!isset($_GET['article']))
 		{
+			//TODO: QUERY FOR FIRST ARTICLE IN DATABASE
 			$query=$query."id=1";
 		}
 		else
@@ -77,11 +78,29 @@
 		}
 		$result=$connection->query($query);
 		$line=$result->fetch_assoc();
-		if(isset($_GET['get']))
+		if(isset($_GET['get'])&&$_GET['get']=="edit")
+		{
+			echo '<form action="update.php" method="post">';
+			echo "Tytuł:<br />";
+			echo '<input type="text" value="'.$line['name'].'" name="name"/><br />';
+			echo "Kategoria:<br />";
+			echo '<input type="text" value="'.$line['category'].'" name="category"/><br />';
+			echo "Zawartość: <br />";
+			echo '<textarea name="content">'.$line['content']."</textarea><br />";
+			echo '<input type="submit" value="Opublikuj"><br /><br />';
+			echo "</form>";
+		}
+		else if(isset($_GET['get'])&&$_GET['get']=="new")
 		{
 			echo "<form>";
-			echo '<input type="text" value="'.$line['name'].'"/>';
-			echo "</form";
+			echo "Tytuł:<br />";
+			echo '<input type="text" name="name"/><br />';
+			echo "Kategoria:<br />";
+			echo '<input type="text" name="category" /><br />';
+			echo "Zawartość: <br />";
+			echo '<textarea name="content"></textarea><br />';
+			echo '<input type="submit" value="Opublikuj"><br /><br />';
+			echo "</form>";
 		}
 		else
 		{
@@ -89,9 +108,9 @@
 			echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
 			echo "<p>".$line['content']."</p>";
 			echo "<hr>";
-			echo '[<a href="#">Edytuj</a>]';
+			echo '[<a href="session.php?article='.$_GET['article'].'&get=edit">Edytuj</a>]';
 			echo ' | [<a href="#">Usuń</a>]';
-			echo ' | [<a href="#">Nowy artykuł</a>]';
+			echo ' | [<a href="session.php?article='.$_GET['article'].'&get=new">Nowy artykuł</a>]';
 		}
 		$result->close();
 		$connection->close();
