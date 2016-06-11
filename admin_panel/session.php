@@ -65,11 +65,13 @@
 	}
 	else
 	{
-		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
+		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
 		if(!isset($_GET['article']))
 		{
-			//TODO: QUERY FOR FIRST ARTICLE IN DATABASE
-			$query=$query."id=1";
+			$result=$connection->query("SELECT friendlyAddress FROM articles WHERE id=1");
+			$line=$result->fetch_assoc();
+			$query=$query.'friendlyAddress="'.$line['friendlyAddress'].'"';
+			$result->close();
 		}
 		else
 		{
@@ -80,13 +82,14 @@
 		$line=$result->fetch_assoc();
 		if(isset($_GET['get'])&&$_GET['get']=="edit")
 		{
-			echo '<form action="update.php" method="post">';
+			echo '<form action="update.php?article='.$line['friendlyAddress'].'" method="post">';
 			echo "Tytuł:<br />";
 			echo '<input type="text" value="'.$line['name'].'" name="name"/><br />';
 			echo "Kategoria:<br />";
 			echo '<input type="text" value="'.$line['category'].'" name="category"/><br />';
 			echo "Zawartość: <br />";
 			echo '<textarea name="content">'.$line['content']."</textarea><br />";
+			if(isset($_SESSION['error'])) echo $_SESSION['error'];
 			echo '<input type="submit" value="Opublikuj"><br /><br />';
 			echo "</form>";
 		}
@@ -99,6 +102,7 @@
 			echo '<input type="text" name="category" /><br />';
 			echo "Zawartość: <br />";
 			echo '<textarea name="content"></textarea><br />';
+			if(isset($_SESSION['error'])) echo $_SESSION['error'];
 			echo '<input type="submit" value="Opublikuj"><br /><br />';
 			echo "</form>";
 		}
@@ -108,9 +112,9 @@
 			echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
 			echo "<p>".$line['content']."</p>";
 			echo "<hr>";
-			echo '[<a href="session.php?article='.$_GET['article'].'&get=edit">Edytuj</a>]';
+			echo '[<a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a>]';
 			echo ' | [<a href="#">Usuń</a>]';
-			echo ' | [<a href="session.php?article='.$_GET['article'].'&get=new">Nowy artykuł</a>]';
+			echo ' | [<a href="session.php?get=new">Nowy artykuł</a>]';
 		}
 		$result->close();
 		$connection->close();
