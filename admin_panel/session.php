@@ -95,7 +95,7 @@
 		}
 		else if(isset($_GET['get'])&&$_GET['get']=="new")
 		{
-			echo "<form>";
+			echo '<form action="update.php" method="post">';
 			echo "Tytuł:<br />";
 			echo '<input type="text" name="name"/><br />';
 			echo "Kategoria:<br />";

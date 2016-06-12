@@ -26,9 +26,15 @@
 	}
 	else
 	{
+		unset($_SESSION['error']);
 		if(!isset($_GET['article']))
 		{
-			
+			//NEW ARTICLE
+			$name=$_POST['name'];
+			$authorId=$_SESSION['id'];
+			$createDate=$date = date('Y-m-d');
+			$category=$_POST['category'];
+			$content=$_POST['content'];
 		}
 		else
 		{
