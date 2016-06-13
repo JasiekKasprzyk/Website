@@ -26,15 +26,37 @@
 	}
 	else
 	{
+		require_once "../connect.php";
+		
 		unset($_SESSION['error']);
 		if(!isset($_GET['article']))
 		{
 			//NEW ARTICLE
-			$name=$_POST['name'];
-			$authorId=$_SESSION['id'];
-			$createDate=$date = date('Y-m-d');
-			$category=$_POST['category'];
-			$content=$_POST['content'];
+			$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+			if($connection->connect_errno!=0)
+			{
+				echo "Error: ".$connection->connect_errno;
+			}
+			else
+			{
+				$name=$_POST['name'];
+				$authorId=$_SESSION['id'];
+				$createDate=$date = date('Y-m-d');
+				$category=$_POST['category'];
+				$content=$_POST['content'];
+				$friendlyAddress=str_replace(" ","-", $_POST['name']);
+				
+				if($connection->query("INSERT articles VALUES (NULL, '$name', '$authorId', '$createDate', '$category', '$content', '$friendlyAddress')"))
+				{
+					echo "Udało się!";
+				}
+				else
+				{
+					echo $connection->error;
+				}
+			}
+			
+			$connection->close();
 		}
 		else
 		{
