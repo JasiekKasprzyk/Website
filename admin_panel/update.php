@@ -29,38 +29,47 @@
 		require_once "../connect.php";
 		
 		unset($_SESSION['error']);
-		if(!isset($_GET['article']))
+		$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+		if($connection->connect_errno!=0)
 		{
-			//NEW ARTICLE
-			$connection = @new mysqli($host, $db_user, $db_password, $db_name);
-			if($connection->connect_errno!=0)
-			{
-				echo "Error: ".$connection->connect_errno;
-			}
-			else
-			{
-				$name=$_POST['name'];
-				$authorId=$_SESSION['id'];
-				$createDate=$date = date('Y-m-d');
-				$category=$_POST['category'];
-				$content=$_POST['content'];
-				$friendlyAddress=str_replace(" ","-", $_POST['name']);
-				
-				if($connection->query("INSERT articles VALUES (NULL, '$name', '$authorId', '$createDate', '$category', '$content', '$friendlyAddress')"))
-				{
-					echo "Udało się!";
-				}
-				else
-				{
-					echo $connection->error;
-				}
-			}
-			
-			$connection->close();
+			echo "Error: ".$connection->connect_errno;
 		}
 		else
 		{
-			//OLD ARTICLE
+			$name=$_POST['name'];
+			$authorId=$_SESSION['id'];
+			$createDate=$date = date('Y-m-d');
+			$category=$_POST['category'];
+			$content=$_POST['content'];
+			$friendlyAddress=str_replace(" ","-", $_POST['name']);
+			
+			if(!isset($_GET['article']))
+			{
+				//NEW ARTICLE
+				if($connection->query("INSERT articles VALUES (NULL, '$name', '$authorId', '$createDate', '$category', '$content', '$friendlyAddress')"))
+				{
+						header('Location: session.php?article='.$friendlyAddress.'');
+				}
+				else
+				{
+					echo "Error: ".$connection->error;
+				}
+				
+			}
+			else
+			{
+				//OLD ARTICLE
+				$id=$_SESSION['articleid'];
+				if($connection->query("UPDATE articles SET name='$name', authorId='$authorId', createDate='$createDate', category='$category', content='$content', friendlyAddress='$friendlyAddress' WHERE id='$id'"))
+				{
+					header('Location: session.php?article='.$friendlyAddress.'');
+				}
+				else
+				{
+					echo "Error: ".$connection->error;
+				}
+			}
+			$connection->close();
 		}
 	}
 ?>

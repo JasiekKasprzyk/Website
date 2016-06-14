@@ -65,7 +65,7 @@
 	}
 	else
 	{
-		$query="SELECT articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
+		$query="SELECT articles.id, articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.";
 		if(!isset($_GET['article']))
 		{
 			$result=$connection->query("SELECT friendlyAddress FROM articles WHERE id=1");
@@ -108,6 +108,7 @@
 		}
 		else
 		{
+			$_SESSION['articleid']=$line['id'];
 			echo "<h1>".$line['name']."</h1>";
 			echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
 			echo "<p>".$line['content']."</p>";
