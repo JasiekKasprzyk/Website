@@ -114,7 +114,7 @@
 			echo "<p>".$line['content']."</p>";
 			echo "<hr>";
 			echo '[<a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a>]';
-			echo ' | [<a href="#">Usuń</a>]';
+			echo ' | [<a href="delete.php">Usuń</a>]';
 			echo ' | [<a href="session.php?get=new">Nowy artykuł</a>]';
 		}
 		$result->close();
