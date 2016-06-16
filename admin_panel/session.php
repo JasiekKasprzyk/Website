@@ -116,6 +116,7 @@
 			echo '[<a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a>]';
 			echo ' | [<a href="delete.php">Usuń</a>]';
 			echo ' | [<a href="session.php?get=new">Nowy artykuł</a>]';
+			echo ' | [<a href="upload.php">Dodaj plik</a>]';
 		}
 		$result->close();
 		$connection->close();
