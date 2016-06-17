@@ -33,7 +33,6 @@
 		</div>
 		<div class="row row-hierarchy">
 			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
-				<table>
 <?php
 	require_once "../connect.php";
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -45,7 +44,6 @@
 	{
 		$query="SELECT id, name, category, friendlyAddress FROM articles";
 		$result=$connection->query($query);
-		$how_many_articles=$result->num_rows;
 		while($line=$result->fetch_assoc())
 		{
 			echo '<li><a href="session.php?article='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></li>";
@@ -54,7 +52,6 @@
 		$connection->close();
 	}
 ?>
-				</table>
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
 <?php
