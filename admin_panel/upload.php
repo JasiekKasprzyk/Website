@@ -6,6 +6,31 @@
 		exit();
 	}
 	require_once "../connect.php";
+	if(is_uploaded_file($_FILES['file']['tmp_name']))
+	{
+		if($_FILES['file']['size']>102400)
+		{
+			$error = '<span style="color: red">Plik jest za duży!</span>';
+		}
+		else
+		{
+			$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+			if($connection->connect_errno!=0)
+			{
+				echo "Error: ".$connection->connect_errno;
+			}
+			else
+			{
+				$name=$_FILES['file']['name'];
+				
+				$query="";
+				$result=$connection->query($query);
+				
+				$result->close();
+				$connection->close();
+			}
+		}
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -40,7 +65,11 @@
 		$result=$connection->query($query);
 		while($line=$result->fetch_assoc())
 		{
-			echo '<div class="photo-tile"></div>';
+			echo '<div class="photo-tile">';
+			echo '<img src="../'.$line['path'].'" class="image" />';
+			echo '<div class="text1">'.$line['name']."(".$line['size']."KB)</div>";
+			echo '<div class="text2">[<a href="../'.$line['path'].'">Obejrzyj</a>] [<a href="#">Usuń</a>]</div>';
+			echo '</div>';
 		}
 		$result->close();
 		$connection->close();
@@ -48,7 +77,16 @@
 ?>
 				</div>
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
+					<h1>Dodaj zdjęcie!</h1>
+					<form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
+						<input type="file" name="file" /><br />
+						<input type="submit" value="Wyślij!" /><br />
+					</form>
 <?php
+	if(isset($error))
+	{
+		echo $error;
+	}
 ?>
 				</div>
 			</div>
