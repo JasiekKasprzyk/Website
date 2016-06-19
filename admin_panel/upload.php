@@ -6,28 +6,50 @@
 		exit();
 	}
 	require_once "../connect.php";
-	if(is_uploaded_file($_FILES['file']['tmp_name']))
+	if((isset($_FILES['fileToUpload']))&&(!empty($_FILES['fileToUpload']['tmp_name'])))
 	{
-		if($_FILES['file']['size']>102400)
+		$target_directory ="files/";
+		$target_file = $target_directory.basename($_FILES['fileToUpload']['name']);
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		if(isset($_POST['submit']))
 		{
-			$error = '<span style="color: red">Plik jest za duży!</span>';
-		}
-		else
-		{
-			$connection = @new mysqli($host, $db_user, $db_password, $db_name);
-			if($connection->connect_errno!=0)
+			$check = getimagesize($_FILES['fileToUpload']['tmp_name']);
+			if($check !== false)
 			{
-				echo "Error: ".$connection->connect_errno;
+				$uploadOk = 1;
 			}
 			else
 			{
-				$name=$_FILES['file']['name'];
-				
-				$query="";
-				$result=$connection->query($query);
-				
-				$result->close();
-				$connection->close();
+				$error = "Plik nie jest obrazkiem.";
+				$uploadOk = 0; 
+			}
+			if(file_exists($target_file)) 
+			{
+				$error = "Przepraszam, ale plik już istnieje!";
+				$uploadOk = 0;
+			}
+			if ($_FILES["fileToUpload"]["size"] > 512000) 
+			{
+				$error = "Przepraszam, ale plik jest za duży. Możesz wysłać pliki do 100KB";
+				$uploadOk = 0;
+			}
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) 
+			{
+				echo "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
+				$uploadOk = 0;
+			}
+			
+			if ($uploadOk == 1) 
+			{
+				if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+				{
+					$error = "Plik ". basename( $_FILES["fileToUpload"]["name"]). " został wysłany.";
+				} 
+				else 
+				{
+					$error = "Przepraszam, ale pojawił się błąd przy przesyłaniu pliku.";
+				}
 			}
 		}
 	}
@@ -79,13 +101,13 @@
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
 					<h1>Dodaj zdjęcie!</h1>
 					<form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
-						<input type="file" name="file" /><br />
-						<input type="submit" value="Wyślij!" /><br />
+						<input type="file" name="fileToUpload" id="fileToUpload" /><br />
+						<input type="submit" value="Wyślij!" name="submit"/><br />
 					</form>
 <?php
 	if(isset($error))
 	{
-		echo $error;
+		echo '<span style="color: red">'.$error."</span>";
 	}
 ?>
 				</div>
