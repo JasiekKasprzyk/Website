@@ -8,8 +8,9 @@
 	require_once "../connect.php";
 	if((isset($_FILES['fileToUpload']))&&(!empty($_FILES['fileToUpload']['tmp_name'])))
 	{
-		$target_directory ="files/";
+		$target_directory ="../files/";
 		$target_file = $target_directory.basename($_FILES['fileToUpload']['name']);
+		$name = basename($_FILES['fileToUpload']['name']);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		if(isset($_POST['submit']))
@@ -24,16 +25,13 @@
 				$error = "Plik nie jest obrazkiem.";
 				$uploadOk = 0; 
 			}
-			if(file_exists($target_file)) 
-			{
-				$error = "Przepraszam, ale plik już istnieje!";
-				$uploadOk = 0;
-			}
-			if ($_FILES["fileToUpload"]["size"] > 512000) 
+			$size = $_FILES['fileToUpload']['size'];
+			if ($size > 1024*1024*1024) 
 			{
 				$error = "Przepraszam, ale plik jest za duży. Możesz wysłać pliki do 100KB";
 				$uploadOk = 0;
 			}
+			$size = round($size/1024, 2);
 			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) 
 			{
 				echo "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
@@ -44,7 +42,24 @@
 			{
 				if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
 				{
-					$error = "Plik ". basename( $_FILES["fileToUpload"]["name"]). " został wysłany.";
+					$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+					if($connection->connect_errno!=0)
+					{
+						$error = "Error: ".$connection->connect_errno;
+					}
+					else
+					{
+						$authorId = $_SESSION['id'];
+						if($connection->query("INSERT pictures VALUES (NULL, '$name', '$target_file', '$size', '$authorId')"))
+						{
+							$error = "Plik ". basename( $_FILES["fileToUpload"]["name"]). " został pomyślnie wysłany i zapisany.";				
+						}
+						else
+						{
+							$error = "Error: ".$connection->error;
+						}
+						$connection->close();
+					}
 				} 
 				else 
 				{
@@ -88,9 +103,9 @@
 		while($line=$result->fetch_assoc())
 		{
 			echo '<div class="photo-tile">';
-			echo '<img src="../'.$line['path'].'" class="image" />';
+			echo '<img src="'.$line['path'].'" class="image" />';
 			echo '<div class="text1">'.$line['name']."(".$line['size']."KB)</div>";
-			echo '<div class="text2">[<a href="../'.$line['path'].'">Obejrzyj</a>] [<a href="#">Usuń</a>]</div>';
+			echo '<div class="text2">[<a href="'.$line['path'].'">Obejrzyj</a>] [<a href="#">Usuń</a>]</div>';
 			echo '</div>';
 		}
 		$result->close();
