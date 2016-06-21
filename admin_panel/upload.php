@@ -105,7 +105,7 @@
 			echo '<div class="photo-tile">';
 			echo '<img src="'.$line['path'].'" class="image" />';
 			echo '<div class="text1">'.$line['name']."(".$line['size']."KB)</div>";
-			echo '<div class="text2">[<a href="'.$line['path'].'">Obejrzyj</a>] [<a href="#">Usuń</a>]</div>';
+			echo '<div class="text2">[<a href="'.$line['path'].'">Obejrzyj</a>] [<a href="delete_photo.php?name='.$line['name'].'">Usuń</a>]</div>';
 			echo '</div>';
 		}
 		$result->close();
