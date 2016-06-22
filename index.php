@@ -10,12 +10,20 @@
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 </head>
 
 
 <body>
-	TREŚĆ STRONY
+	<div class="container-fluid">
+		<div class="row header">
+			<div class="title">
+				<img src="files/pad.png" />
+				Komputermania
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
