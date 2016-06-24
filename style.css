@@ -4,6 +4,8 @@ body
 	margin: 0;
 	padding: 0;
 	font-family: 'Lato', sans-serif;
+	background-color: #222222!important;
+	color: white!important;
 }
 .space
 {
@@ -12,7 +14,7 @@ body
 }
 .login-background
 {
-border: 1px solid #aaaaaa;
+border: 1px solid #ffffff;
 border-radius: 10px;
 padding: 10px;
 }
@@ -64,21 +66,41 @@ textarea
 }
 .header
 {
-	height: 110px;
-	border: 1px solid #333333;
+	height: 158px;
+	border: 1px solid #dddddd;
 	padding: 20px;
 }
 .title
 {
-	border: 1px solid #333333;
-	width: 300px;
+	border: 1px solid #dddddd;
+	width: 268px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 	font-size: 35px;
 	font-weight: 700;
 }
-
+.menu
+{
+	height: 80px;
+	background-color: #444444;
+}
+ol
+{
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	
+}
+ol > li
+{
+	float: left;
+	margin: 10px;
+	padding: 20px;
+	width: 100px;
+	background-color: red;
+}
 @media (max-width: 768px)
 {
 .image

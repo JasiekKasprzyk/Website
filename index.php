@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Tytuł strony</title>
+	<title>Onlykom</title>
 	<meta name="description" content="(Opis od 155 do 160 znaków)." />
 	<meta name="keywords" content="Tagi, tagi, tagi" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
@@ -20,8 +20,17 @@
 		<div class="row header">
 			<div class="title">
 				<img src="files/pad.png" />
-				Komputermania
+				<br />
+				Onlykom
 			</div>
+		</div>
+		<div class="row menu">
+			<ol>
+				<li>Start</li>
+				<li>Sprzęt</li>
+				<li>Oprogramowanie</li>
+				<li>O nas</li>
+			</ol>
 		</div>
 	</div>
 </body>
