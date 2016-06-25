@@ -82,24 +82,74 @@ textarea
 }
 .menu
 {
-	height: 80px;
+	padding: 10px 0;
 	background-color: #444444;
+	text-align: center;
 }
 ol
 {
+	padding: 0;
+	margin: 0;
 	list-style-type: none;
-	margin-left: auto;
-	margin-right: auto;
-	width: 75%;
-	
+	font-size: 18px;
+	height: 35px;
+	line-height: 200%;
+	display: inline-block;
+}
+
+ol a
+{
+	text-decoration: none;
+	color: #ffffff;
+	display: block;
 }
 ol > li
 {
 	float: left;
-	margin: 10px;
-	padding: 20px;
-	width: 100px;
-	background-color: red;
+	width: 150px;
+	height: 40px;
+}
+
+ol > li:hover
+{
+	background-color: #cf6969;
+}
+
+ol > li:hover > ul
+{
+	display: block;
+}
+
+ol > li:hover > a
+{
+	color: #451717;
+}
+
+ol > li > ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	height: 40px;
+	display: none;
+}
+
+ol > li >ul >li
+{
+	background-color: #cf6969;
+	position: relative;
+	z-index: 100;
+	border-top: 1px dashed #751b1b;
+}
+
+ol > li >ul >li:hover
+{
+	background-color: #c34f4f;
+}
+
+ol > li >ul >li:hover > a
+{
+	color: #451717;
 }
 @media (max-width: 768px)
 {

@@ -26,9 +26,30 @@
 		</div>
 		<div class="row menu">
 			<ol>
-				<li>Start</li>
-				<li>Sprzęt</li>
-				<li>Oprogramowanie</li>
+				<li>
+					Start
+				</li>
+				<li>
+					Sprzęt
+					<ul>
+						<li>Płyta główna</li>
+						<li>Procesor</li>
+						<li>Karta graficzna</li>
+						<li>Pamięć masowa</li>
+						<li>Karta dźwiękowa</li>
+						<li>Pamięc RAM</li>
+						<li>Napędy optyczne</li>
+						<li>Chłodzenie</li>
+						<li>Zasilacz</li>
+					</ul>
+				</li>
+				<li>
+					Oprogramowanie
+					<ul>
+						<li>Systemy operacyjne</li>
+						<li>Programowanie</li>
+					</ul>
+				</li>
 				<li>O nas</li>
 			</ol>
 		</div>
