@@ -9,13 +9,18 @@ body
 	width: 100%;
 	font-size: 20px;
 }
-.container
+.container-login
 {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+.container-session
+{
+	width: 100%;
+	
 }
 .login-interface
 {
@@ -45,4 +50,9 @@ body
 	margin-right: auto;
 	display: block;
 	margin-top: 10px;
+	font-size: 20px;
+}
+.topbar
+{
+	height: 50px;
 }

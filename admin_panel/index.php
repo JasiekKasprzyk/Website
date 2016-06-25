@@ -22,7 +22,7 @@
 
 
 <body>
-	<div class="container">
+	<div class="container-login">
 		<div class="login-interface">
 			<form action="login.php" method="post">
 				Zaloguj się do panelu admina:<br/>
