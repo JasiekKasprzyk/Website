@@ -8,8 +8,8 @@
 	<meta name="keywords" content="Tagi, tagi, tagi" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/fontello.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 </head>
@@ -19,40 +19,46 @@
 	<div class="container-fluid">
 		<div class="row header">
 			<div class="title">
-				<img src="files/pad.png" />
+				<img src="files/logo.png" id="logo" />
 				<br />
 				Onlykom
 			</div>
 		</div>
-		<div class="row menu">
+		<!-- LESS THAN 806PX -->
+		<div class="small-menu" onclick="">
+			<i class="icon-menu"></i>
+		</div>
+		<!-- MORE THAN 806PX -->
+		<div class="menu">
 			<ol>
 				<li>
-					Start
+					<a href="#">Start</a>
 				</li>
 				<li>
-					Sprzęt
+					<a href="#">Sprzęt</a>
 					<ul>
-						<li>Płyta główna</li>
-						<li>Procesor</li>
-						<li>Karta graficzna</li>
-						<li>Pamięć masowa</li>
-						<li>Karta dźwiękowa</li>
-						<li>Pamięc RAM</li>
-						<li>Napędy optyczne</li>
-						<li>Chłodzenie</li>
-						<li>Zasilacz</li>
+						<li><a href="#">Płyta główna</a></li>
+						<li><a href="#">Procesor</a></li>
+						<li><a href="#">Karta graficzna</a></li>
+						<li><a href="#">Pamięć masowa</a></li>
+						<li><a href="#">Karta dźwiękowa</a></li>
+						<li><a href="#">Pamięc RAM</a></li>
+						<li><a href="#">Napędy optyczne</a></li>
+						<li><a href="#">Chłodzenie</a></li>
+						<li><a href="#">Zasilacz</a></li>
 					</ul>
 				</li>
 				<li>
-					Oprogramowanie
+					<a href="#">Oprogramowanie</a>
 					<ul>
-						<li>Systemy operacyjne</li>
-						<li>Programowanie</li>
+						<li><a href="#">Systemy operacyjne</a></li>
+						<li><a href="#">Programowanie</a></li>
 					</ul>
 				</li>
-				<li>O nas</li>
+				<li><a href="#">O nas</a></li>
 			</ol>
 		</div>
+		<script src="small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
 	</div>
 </body>
 
