@@ -20,7 +20,6 @@ body
 .container-session
 {
 	width: 100%;
-	
 }
 .login-interface
 {
@@ -54,5 +53,41 @@ body
 }
 .topbar
 {
-	height: 50px;
+	background-color: #1196C2;
+	text-align: center;
+	padding: 20px;
+}
+.hello
+{
+	float: left;
+	width: 25%;
+	height: 23px;
+}
+.topbar-menu
+{
+	float: left;
+	width: 75%;
+}
+.topbar-button
+{
+	float: right;
+	width: 33%;
+	border: 1px solid #ffffff;
+	height: 23px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.topbar-button:hover
+{
+	background-color: #22A7D3;
+}
+.topbar-button a
+{
+	text-decoration: none;
+	color: white;
+	display: block;
+}
+.topbar-button:hover a
+{
+	color: #333333;
 }

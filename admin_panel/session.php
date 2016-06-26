@@ -22,13 +22,17 @@
 <body>
 	<div class="container-session">
 		<div class="topbar">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 admin-panel-header">
 <?php
 
-	echo "Witaj, ".$_SESSION['username'].'! [<a href="logout.php">Wyloguj się!</a>]';
-	
+	echo '<div class="hello">Witaj, '.$_SESSION['username'].'!</div>';
 ?>
+			<div class="topbar-menu">
+				<div class="topbar-button"><a href="logout.php">Wyloguj się!</a></div>
+				<div class="topbar-button"><a href="session.php?get=new">Nowy artykuł</a></div>
+				<div class="topbar-button"><a href="upload.php">Dodaj plik</a></div>
+				<div style="clear: both"></div>
 			</div>
+			<div style="clear: both"></div>
 		</div>
 		<div class="row row-hierarchy">
 			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
@@ -111,8 +115,6 @@
 			echo "<hr>";
 			echo '[<a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a>]';
 			echo ' | [<a href="delete.php">Usuń</a>]';
-			echo ' | [<a href="session.php?get=new">Nowy artykuł</a>]';
-			echo ' | [<a href="upload.php">Dodaj plik</a>]';
 		}
 		$result->close();
 		$connection->close();
