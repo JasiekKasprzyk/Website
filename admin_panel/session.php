@@ -34,8 +34,8 @@
 			</div>
 			<div style="clear: both"></div>
 		</div>
-		<div class="row row-hierarchy">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
+		<div id="main-bar">
+			<div class="table">
 <?php
 	require_once "../connect.php";
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -49,14 +49,14 @@
 		$result=$connection->query($query);
 		while($line=$result->fetch_assoc())
 		{
-			echo '<li><a href="session.php?article='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></li>";
+			echo '<div class="article-label"><a href="session.php?article='.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></div>";
 		}
 		$result->close();
 		$connection->close();
 	}
 ?>
 			</div>
-			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
+			<div class="content">
 <?php
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
 	if($connection->connect_errno!=0)
@@ -121,6 +121,7 @@
 	}
 ?>
 			</div>
+			<div style="clear: both"></div>
 		</div>
 	</div>
 
