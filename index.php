@@ -25,12 +25,41 @@
 			</div>
 		</div>
 		<!-- LESS THAN 806PX -->
-		<div class="small-menu" onclick="">
+		<div class="small-menu-button" onclick="show()">
 			<i class="icon-menu"></i>
 		</div>
-		<!-- MORE THAN 806PX -->
-		<div class="menu">
+		<div id="small-menu">
 			<ol>
+				<li>
+					<a href="#">Start</a>
+				</li>
+				<li>
+					<a href="#">Sprzęt</a>
+					<ul>
+						<li><a href="#">Płyta główna</a></li>
+						<li><a href="#">Procesor</a></li>
+						<li><a href="#">Karta graficzna</a></li>
+						<li><a href="#">Pamięć masowa</a></li>
+						<li><a href="#">Karta dźwiękowa</a></li>
+						<li><a href="#">Pamięc RAM</a></li>
+						<li><a href="#">Napędy optyczne</a></li>
+						<li><a href="#">Chłodzenie</a></li>
+						<li><a href="#">Zasilacz</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Oprogramowanie</a>
+					<ul>
+						<li><a href="#">Systemy operacyjne</a></li>
+						<li><a href="#">Programowanie</a></li>
+					</ul>
+				</li>
+				<li><a href="#">O nas</a></li>
+			</ol>
+		</div>
+		<!-- MORE THAN 806PX -->
+		<div id="menu">
+			<ol id="big">
 				<li>
 					<a href="#">Start</a>
 				</li>
