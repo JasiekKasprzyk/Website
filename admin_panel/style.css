@@ -71,9 +71,10 @@ body
 .topbar-button
 {
 	float: right;
-	width: 25%;
+	width: calc(25% - 10px);
 	border: 1px solid #ffffff;
-	height: 23px;
+	height: 30px;
+	padding: 5px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -94,28 +95,63 @@ body
 }
 #main-bar
 {
-	height: 100px;
+	min-height: 100px;
 }
 .table
 {
 	float: left;
-	width: 25%;
+	width: calc(25% - 4px);
 	height: 100%;
+	padding: 2px;
 }
 .content
 {
 	float: left;
-	width: 75%;
+	width: calc(75% - 50px);
 	height: 100%;
+	background-color: #dddddd;
+	color: #000000;
+	padding: 25px;
+	text-align: justify;
 }
 
 .article-label
 {
-	width: 100%;
+	width: calc(100%-20px);
 	text-align: center;
+	margin: 5px;
+	padding: 5px;
+	background-color: #1196C2;
 }
 
-@media (max-width: 668px)
+.article-label > a
+{
+	text-decoration: none;
+	color: white;
+	display: block;
+}
+
+.article-label:hover
+{
+	background-color: #22A7D3;
+}
+
+.article-label:hover > a
+{
+	color: #333333;
+}
+
+.edit-content-menu
+{
+	float: left;
+	width: calc(50% - 20px);
+	text-align: center;
+	background-color: #1196C2;
+	padding: 5px;
+	margin: 5px;
+}
+
+@media (max-width: 750px)
 {
 	.hello
 	{
@@ -131,9 +167,21 @@ body
 	}
 	.topbar-button
 	{
-		width: 100%;
+		width: calc(100% - 10px);
 		float: none;
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.table
+	{
+		float: none;
+		width: calc(100% - 4px);
+		padding: 2px;
+	}
+	.content
+	{
+		float: none;
+		width: calc(100% - 50px);
+	}
+	
 }

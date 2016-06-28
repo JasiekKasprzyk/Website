@@ -16,6 +16,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 
 
@@ -112,9 +113,9 @@
 			echo "<h1>".$line['name']."</h1>";
 			echo "<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>";
 			echo "<p>".$line['content']."</p>";
-			echo "<hr>";
-			echo '[<a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a>]';
-			echo ' | [<a href="delete.php">Usuń</a>]';
+			echo '<div class="edit-content-menu"><a href="session.php?article='.$line['friendlyAddress'].'&get=edit">Edytuj</a></div>';
+			echo '<div class="edit-content-menu"><a href="delete.php">Usuń</a></div>';
+			echo '<div style="clear: both"></div>';
 		}
 		$result->close();
 		$connection->close();
