@@ -29,7 +29,7 @@
 			<i class="icon-menu"></i>
 		</div>
 		<div id="small-menu">
-			<ol>
+			<ol id="small">
 				<li>
 					<a href="#">Start</a>
 				</li>

@@ -12,3 +12,12 @@ function show()
 		isShowed = false;
 	}
 }
+.onresize=function()
+{
+	var width = window.innerWidth;
+	if(width<806)
+	{
+		document.getElementById('small-menu').style.display="block";
+		isShowed = false;
+	}
+};
