@@ -11,11 +11,12 @@
 	<link rel="stylesheet" href="css/fontello.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script src="small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
 </head>
 
 
-<body>
+<body onresize="hide()" onload="hide()">
 	<div class="container-fluid">
 		<div class="row header">
 			<div class="title">
@@ -87,7 +88,12 @@
 				<li><a href="#">O nas</a></li>
 			</ol>
 		</div>
-		<script src="small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
+		<div class="container">
+			<div class="newsfeed">
+			</div>
+			<div class="advert-bar">
+			</div>
+		</div>
 	</div>
 </body>
 

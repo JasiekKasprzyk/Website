@@ -12,12 +12,17 @@ function show()
 		isShowed = false;
 	}
 }
-.onresize=function()
+function hide()
 {
 	var width = window.innerWidth;
 	if(width<806)
 	{
-		document.getElementById('small-menu').style.display="block";
+		document.getElementById('small-menu').style.display="none";
 		isShowed = false;
 	}
 };
+
+$(window).bind('resize', function() {
+	document.getElementById('small-menu').style.display="none";
+	isShowed = false;
+})
