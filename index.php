@@ -90,8 +90,56 @@
 		</div>
 		<div class="container">
 			<div class="newsfeed">
+<?php
+	require_once "connect.php";
+	mysqli_report(MYSQLI_REPORT_STRICT);
+	try
+	{
+		$connection = @new mysqli($host, $db_user, $db_password, $db_name);
+		if($connection->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+		else
+		{
+			$result = $connection->query("SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id ORDER BY articles.createDate DESC LIMIT 10");
+			if(!$result)
+			{
+				throw new Exception($connection->error);
+			}
+			else
+			{
+				while($row = $result->fetch_assoc())
+				{
+					$name = $row['name'];
+					$createDate = $row['createDate'];
+					$category = $row['category'];
+					$content = $row['content'];
+					$friendlyAddress = $row['friendlyAddress'];
+					$username = $row['username'];
+					
+					echo '<div class="news">';
+					echo '<h1>'.$name.'</h1>';
+					echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
+					echo substr($content, 0, 750).'... <a href="#">Czytaj dalej</a>';
+					echo '</div>';
+				}
+				$result->free();
+			}
+			$connection->close();
+		}
+	}
+	catch(Exception $e)
+	{
+		echo '<div class="news"><h1>Błąd serwera! Przepraszamy za niedogodności i prosimy o odwiedzenie naszej strony w innym terminie!</h1></div>';
+		echo 'Informacja deweloperska:'.$e;
+	}
+?>
 			</div>
 			<div class="advert-bar">
+				aaa
+			</div>
+			<div style="clear: both">
 			</div>
 		</div>
 	</div>
