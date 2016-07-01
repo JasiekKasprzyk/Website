@@ -142,6 +142,9 @@
 			<div style="clear: both">
 			</div>
 		</div>
+		<div id="footer">
+			Wszelkie prawa zastrzeżone &copy; Onlykom 2016
+		</div>
 	</div>
 </body>
 
