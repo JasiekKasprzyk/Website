@@ -103,11 +103,6 @@ ol#big  > li:hover > ul
 	display: block;
 }
 
-ol#small > li:hover > ul
-{
-	display: block;
-}
-
 ol#big  > li:hover > a
 {
 	color: #333333;
@@ -116,19 +111,22 @@ ol#big  > li:hover > a
 ol#small > li:hover > a
 {
 	color: #333333;
+	cursor: pointer;
+}
+
+.show2
+{
+	background-color: #22A7D3;
+	display: none;
+}
+
+.show3
+{
+	background-color: #22A7D3;
+	display: none;
 }
 
 ol#big  > li > ul
-{
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	height: 40px;
-	display: none;
-	text-transform: none;
-}
-
-ol#small > li > ul
 {
 	list-style-type: none;
 	padding: 0;
@@ -145,30 +143,13 @@ ol#big  > li >ul >li
 	z-index: 100;
 	border-top: 1px dashed #2770D6;
 }
-ol#small  > li >ul >li
-{
-	background-color: #1196C2;
-	position: relative;
-	z-index: 100;
-	border-bottom: 1px dashed #2770d6;
-}
 
 ol#big  > li >ul >li:hover
 {
 	background-color: #22A7D3;
 }
 
-#small > li > ul > li:hover
-{
-	background-color: #22A7D3;
-}
-
 ol#big  > li >ul >li:hover > a
-{
-	color: #333333;
-}
-
-ol#small > li > ul > li:hover > a
 {
 	color: #333333;
 }

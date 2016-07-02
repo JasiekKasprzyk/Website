@@ -16,7 +16,7 @@
 </head>
 
 
-<body onresize="hide()" onload="hide()">
+<body onload="hide()">
 	<div class="container-fluid">
 		<div class="row header">
 			<div class="title">
@@ -31,30 +31,25 @@
 		</div>
 		<div id="small-menu">
 			<ol id="small">
-				<li>
-					<a href="#">Start</a>
-				</li>
-				<li>
-					<a href="#">Sprzęt</a>
-					<ul>
-						<li><a href="#">Płyta główna</a></li>
-						<li><a href="#">Procesor</a></li>
-						<li><a href="#">Karta graficzna</a></li>
-						<li><a href="#">Pamięć masowa</a></li>
-						<li><a href="#">Karta dźwiękowa</a></li>
-						<li><a href="#">Pamięc RAM</a></li>
-						<li><a href="#">Napędy optyczne</a></li>
-						<li><a href="#">Chłodzenie</a></li>
-						<li><a href="#">Zasilacz</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="#">Oprogramowanie</a>
-					<ul>
-						<li><a href="#">Systemy operacyjne</a></li>
-						<li><a href="#">Programowanie</a></li>
-					</ul>
-				</li>
+				<li><a href="#">Start</a></li>
+				
+				<li><a onclick="release(2)">Sprzęt</a></li>
+				
+				<li class="show2"><a href="#">Płyta główna</a></li>
+				<li class="show2"><a href="#">Procesor</a></li>
+				<li class="show2"><a href="#">Karta graficzna</a></li>
+				<li class="show2"><a href="#">Pamięć masowa</a></li>
+				<li class="show2"><a href="#">Karta dźwiękowa</a></li>
+				<li class="show2"><a href="#">Pamięc RAM</a></li>
+				<li class="show2"><a href="#">Napędy optyczne</a></li>
+				<li class="show2"><a href="#">Chłodzenie</a></li>
+				<li class="show2"><a href="#">Zasilacz</a></li>
+				
+				<li><a onclick="release(3)">Oprogramowanie</a></li>
+				
+				<li class="show3"><a href="#">Systemy operacyjne</a></li>
+				<li class="show3"><a href="#">Programowanie</a></li>
+				
 				<li><a href="#">O nas</a></li>
 			</ol>
 		</div>
