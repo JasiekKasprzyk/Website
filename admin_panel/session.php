@@ -24,7 +24,6 @@
 	<div class="container-session">
 		<div class="topbar">
 <?php
-
 	echo '<div class="hello">Witaj, '.$_SESSION['username'].'!</div>';
 ?>
 			<div class="topbar-menu">

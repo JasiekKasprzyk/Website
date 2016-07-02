@@ -75,21 +75,37 @@
 		<meta charset="utf-8" />
 		<title>Panel administratora - Upload</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
-		<link rel="stylesheet" href="../style.css" type="text/css" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 admin-panel-header">
+		<div class="container-session">
+			<div class="topbar">
 <?php
-	echo "Witaj, ".$_SESSION['username'].'! [<a href="logout.php">Wyloguj się!</a>] [<a href="session.php">Powróć do spisu artykułów</a>]';
+	echo '<div class="hello">Witaj, '.$_SESSION['username'].'!</div>';
 ?>
+				<div class="topbar-menu">
+					<div class="topbar-button"><a href="logout.php">Wyloguj się!</a></div>
+					<div class="topbar-button"><a href="session.php">Artykuły</a></div>
+					<div style="clear: both"></div>
 				</div>
+				<div style="clear: both"></div>
 			</div>
-			<div class="row row-hierarchy">
-				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 hierarchy">
+			<div class="add-photo-menu">
+				<h1>Dodaj zdjęcie!</h1>
+				<form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
+					<input type="file" name="fileToUpload" id="fileToUpload" /><br />
+					<input type="submit" value="Wyślij!" name="submit" class="upload"/><br />
+				</form>
+<?php
+	if(isset($error))
+	{
+		echo '<span style="color: red">'.$error."</span>";
+	}
+?>
+			</div>
+			<div class="photo-explorer">
 <?php
 	$connection = @new mysqli($host, $db_user, $db_password, $db_name);
 	if($connection->connect_errno!=0)
@@ -100,32 +116,24 @@
 	{
 		$query="SELECT name, path, size FROM pictures";
 		$result=$connection->query($query);
+		$row_number = 0;
 		while($line=$result->fetch_assoc())
 		{
+			$row_number++;
 			echo '<div class="photo-tile">';
 			echo '<img src="'.$line['path'].'" class="image" />';
 			echo '<div class="text1">'.$line['name']."(".$line['size']."KB)</div>";
 			echo '<div class="text2">[<a href="'.$line['path'].'">Obejrzyj</a>] [<a href="delete_photo.php?name='.$line['name'].'">Usuń</a>]</div>';
 			echo '</div>';
+			if(($row_number%2)==0)
+			{
+				//echo '<div style="clear: both"></div>';
+			}
 		}
 		$result->close();
 		$connection->close();
 	}
 ?>
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10 hierarchy">
-					<h1>Dodaj zdjęcie!</h1>
-					<form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
-						<input type="file" name="fileToUpload" id="fileToUpload" /><br />
-						<input type="submit" value="Wyślij!" name="submit"/><br />
-					</form>
-<?php
-	if(isset($error))
-	{
-		echo '<span style="color: red">'.$error."</span>";
-	}
-?>
-				</div>
 			</div>
 		</div>
 	</body>

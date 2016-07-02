@@ -57,7 +57,20 @@ body
 	text-align: center;
 	padding: 20px;
 }
+.topbar-upload
+{
+	background-color: #1196C2;
+	text-align: center;
+	padding: 20px;
+}
 .hello
+{
+	float: left;
+	width: calc(25% - 10px);
+	height: 23px;
+	padding: 5px;
+}
+.hello-upload
 {
 	float: left;
 	width: calc(25% - 10px);
@@ -237,6 +250,64 @@ input[type=submit]:focus
 input[type=submit]:hover
 {
 	background-color: #1196C2;
+}
+.add-photo-menu
+{
+	background-color: #dddddd;
+	padding: 20px;
+	color: #000000;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.add-photo-menu > h1
+{
+	margin: 0;
+	padding: 0;
+}
+input[type=file]
+{
+	background-color: #1196C2;
+	margin: 5px;
+	padding: 10px;
+	width: 250px;
+	box-sizing: border-box;
+}
+input[type=submit].upload
+{
+	width: 250px;
+}
+
+.photo-explorer
+{
+	width: 100%;
+}
+.photo-tile
+{
+	width: calc(20% - 10px);
+	height: 150px;
+	margin: 5px;
+	background-color: #1196C2;
+	float: left;
+}
+
+.image
+{
+	height: 100px;
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.text1
+{
+	display: none;
+}
+
+.text2
+{
+	display: none;
 }
 
 @media (max-width: 750px)
