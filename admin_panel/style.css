@@ -285,10 +285,20 @@ input[type=submit].upload
 .photo-tile
 {
 	width: calc(20% - 10px);
-	height: 150px;
+	height: 200px;
 	margin: 5px;
 	background-color: #1196C2;
 	float: left;
+}
+
+.photo-tile:hover > .text1
+{
+	display: none;
+}
+
+.photo-tile:hover > .text2
+{
+	display: block;
 }
 
 .image
@@ -302,12 +312,50 @@ input[type=submit].upload
 
 .text1
 {
-	display: none;
+	word-wrap: break-word;
+	text-align: center;
 }
 
 .text2
 {
 	display: none;
+	text-align: center;
+}
+
+.button-look
+{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.button-look a
+{
+	display: block;
+	text-decoration: none;
+	color: white;
+}
+
+.button-delete
+{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.button-delete a
+{
+	display: block;
+	color: white;
+	text-decoration: none;
+}
+
+.button-look:hover
+{
+	background-color: #4FD124;
+}
+
+.button-delete:hover
+{
+	background-color: red;
 }
 
 @media (max-width: 750px)
@@ -343,4 +391,25 @@ input[type=submit].upload
 		width: calc(100% - 50px);
 	}
 	
+}
+@media (max-width: 985px)
+{
+	.photo-tile
+	{
+		width: calc(25% - 10px);
+	}
+}
+@media (max-width: 780px)
+{
+	.photo-tile
+	{
+		width: calc(50% - 10px);
+	}
+}
+@media (max-width: 400px)
+{
+	.photo-tile
+	{
+		width: calc(100% - 10px);
+	}
 }

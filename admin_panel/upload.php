@@ -119,16 +119,11 @@
 		$row_number = 0;
 		while($line=$result->fetch_assoc())
 		{
-			$row_number++;
 			echo '<div class="photo-tile">';
 			echo '<img src="'.$line['path'].'" class="image" />';
 			echo '<div class="text1">'.$line['name']."(".$line['size']."KB)</div>";
-			echo '<div class="text2">[<a href="'.$line['path'].'">Obejrzyj</a>] [<a href="delete_photo.php?name='.$line['name'].'">Usuń</a>]</div>';
+			echo '<div class="text2"><div class="button-look"><a href="'.$line['path'].'">Obejrzyj</a></div><div class="button-delete"><a href="delete_photo.php?name='.$line['name'].'">Usuń</a></div></div>';
 			echo '</div>';
-			if(($row_number%2)==0)
-			{
-				//echo '<div style="clear: both"></div>';
-			}
 		}
 		$result->close();
 		$connection->close();
