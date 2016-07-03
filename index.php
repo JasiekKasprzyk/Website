@@ -1,4 +1,4 @@
-<!DOCTYPE HTMP>
+<!DOCTYPE HTML>
 <html lang="pl">
 
 <head>
@@ -31,56 +31,56 @@
 		</div>
 		<div id="small-menu">
 			<ol id="small">
-				<li><a href="#">Start</a></li>
+				<li><a href="index.php">Start</a></li>
 				
 				<li><a onclick="release(2)">Sprzęt</a></li>
 				
-				<li class="show2"><a href="#">Płyta główna</a></li>
-				<li class="show2"><a href="#">Procesor</a></li>
-				<li class="show2"><a href="#">Karta graficzna</a></li>
-				<li class="show2"><a href="#">Pamięć masowa</a></li>
-				<li class="show2"><a href="#">Karta dźwiękowa</a></li>
-				<li class="show2"><a href="#">Pamięc RAM</a></li>
-				<li class="show2"><a href="#">Napędy optyczne</a></li>
-				<li class="show2"><a href="#">Chłodzenie</a></li>
-				<li class="show2"><a href="#">Zasilacz</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/plyta-glowna">Płyta główna</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/procesor">Procesor</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/karta-graficzna">Karta graficzna</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/pamiec-ram">Pamięc RAM</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/chlodzenie">Chłodzenie</a></li>
+				<li class="show2"><a href="index.php?category=sprzet/zasilacz">Zasilacz</a></li>
 				
 				<li><a onclick="release(3)">Oprogramowanie</a></li>
 				
-				<li class="show3"><a href="#">Systemy operacyjne</a></li>
-				<li class="show3"><a href="#">Programowanie</a></li>
+				<li class="show3"><a href="index.php?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
+				<li class="show3"><a href="index.php?category=oprogramowanie/programowanie">Programowanie</a></li>
 				
-				<li><a href="#">O nas</a></li>
+				<li><a href="index.php?category=o-nas">O nas</a></li>
 			</ol>
 		</div>
 		<!-- MORE THAN 806PX -->
 		<div id="menu">
 			<ol id="big">
 				<li>
-					<a href="#">Start</a>
+					<a href="index.php">Start</a>
 				</li>
 				<li>
 					<a href="#">Sprzęt</a>
 					<ul>
-						<li><a href="#">Płyta główna</a></li>
-						<li><a href="#">Procesor</a></li>
-						<li><a href="#">Karta graficzna</a></li>
-						<li><a href="#">Pamięć masowa</a></li>
-						<li><a href="#">Karta dźwiękowa</a></li>
-						<li><a href="#">Pamięc RAM</a></li>
-						<li><a href="#">Napędy optyczne</a></li>
-						<li><a href="#">Chłodzenie</a></li>
-						<li><a href="#">Zasilacz</a></li>
+						<li><a href="index.php?category=sprzet/plyta-glowna">Płyta główna</a></li>
+						<li><a href="index.php?category=sprzet/procesor">Procesor</a></li>
+						<li><a href="index.php?category=sprzet/karta-graficzna">Karta graficzna</a></li>
+						<li><a href="index.php?category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
+						<li><a href="index.php?category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
+						<li><a href="index.php?category=sprzet/pamiec-ram">Pamięc RAM</a></li>
+						<li><a href="index.php?category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
+						<li><a href="index.php?category=sprzet/chlodzenie">Chłodzenie</a></li>
+						<li><a href="index.php?category=sprzet/zasilacz">Zasilacz</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#">Oprogramowanie</a>
 					<ul>
-						<li><a href="#">Systemy operacyjne</a></li>
-						<li><a href="#">Programowanie</a></li>
+						<li><a href="index.php?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
+						<li><a href="index.php?category=oprogramowanie/programowanie">Programowanie</a></li>
 					</ul>
 				</li>
-				<li><a href="#">O nas</a></li>
+				<li><a href="index.php?category=o-nas">O nas</a></li>
 			</ol>
 		</div>
 		<div class="container">
@@ -97,13 +97,56 @@
 		}
 		else
 		{
-			$result = $connection->query("SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id ORDER BY articles.createDate DESC LIMIT 10");
+			if(isset($_GET['category']))
+			{
+				$category = $_GET['category'];
+				switch($category)
+				{
+					case "sprzet/plyta-glowna": $category="Płyta główna";
+					break;
+					case "sprzet/procesor": $category="Procesor";
+					break;
+					case "sprzet/karta-graficzna": $category="Karta graficzna";
+					break;
+					case "sprzet/pamiec-masowa": $category="Pamięć masowa";
+					break;
+					case "sprzet/karta-dzwiekowa": $category="Karta dźwiękowa";
+					break;
+					case "sprzet/pamiec-ram": $category="Pamięć RAM";
+					break;
+					case "sprzet/napedy-optyczne": $category="Napędy optyczne";
+					break;
+					case "sprzet/chlodzenie": $category="Chłodzenie";
+					break;
+					case "sprzet/zasilacz": $category="Zasilacz";
+					break;
+					case "oprogramowanie/systemy-operacyjne": $category="Systemy operacyjne";
+					break;
+					case "oprogramowanie/programowanie": $category="Programowanie";
+					break;
+					case "o-nas": $category="O nas";
+					break;
+					default: $category="Nieprawidłowy link";
+					break;
+				}
+				
+				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.category='$category' ORDER BY articles.createDate DESC";
+			}
+			else
+			{
+				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id ORDER BY articles.createDate DESC LIMIT 10";
+			}
+			$result = $connection->query($query);
 			if(!$result)
 			{
 				throw new Exception($connection->error);
 			}
 			else
 			{
+				if(isset($category))
+				{
+					echo '<div class="category-header">'.$category.'</div>';
+				}
 				while($row = $result->fetch_assoc())
 				{
 					$name = $row['name'];
