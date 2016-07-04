@@ -118,12 +118,14 @@ ol#small > li:hover > a
 {
 	background-color: #22A7D3;
 	display: none;
+	text-transform: none;
 }
 
 .show3
 {
 	background-color: #22A7D3;
 	display: none;
+	text-transform: none;
 }
 
 ol#big  > li > ul

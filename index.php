@@ -97,72 +97,101 @@
 		}
 		else
 		{
-			if(isset($_GET['category']))
+			if(isset($_GET['friendlyAddress']))
 			{
-				$category = $_GET['category'];
-				switch($category)
+				$friendlyAddress = $_GET['friendlyAddress'];
+				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.friendlyAddress='$friendlyAddress'";
+				$result = $connection->query($query);
+				if(!$result)
 				{
-					case "sprzet/plyta-glowna": $category="Płyta główna";
-					break;
-					case "sprzet/procesor": $category="Procesor";
-					break;
-					case "sprzet/karta-graficzna": $category="Karta graficzna";
-					break;
-					case "sprzet/pamiec-masowa": $category="Pamięć masowa";
-					break;
-					case "sprzet/karta-dzwiekowa": $category="Karta dźwiękowa";
-					break;
-					case "sprzet/pamiec-ram": $category="Pamięć RAM";
-					break;
-					case "sprzet/napedy-optyczne": $category="Napędy optyczne";
-					break;
-					case "sprzet/chlodzenie": $category="Chłodzenie";
-					break;
-					case "sprzet/zasilacz": $category="Zasilacz";
-					break;
-					case "oprogramowanie/systemy-operacyjne": $category="Systemy operacyjne";
-					break;
-					case "oprogramowanie/programowanie": $category="Programowanie";
-					break;
-					case "o-nas": $category="O nas";
-					break;
-					default: $category="Nieprawidłowy link";
-					break;
+					throw new Exception($connection->error);
 				}
-				
-				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.category='$category' ORDER BY articles.createDate DESC";
-			}
-			else
-			{
-				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id ORDER BY articles.createDate DESC LIMIT 10";
-			}
-			$result = $connection->query($query);
-			if(!$result)
-			{
-				throw new Exception($connection->error);
-			}
-			else
-			{
-				if(isset($category))
+				else
 				{
-					echo '<div class="category-header">'.$category.'</div>';
-				}
-				while($row = $result->fetch_assoc())
-				{
+					$row = $result->fetch_assoc();
 					$name = $row['name'];
 					$createDate = $row['createDate'];
 					$category = $row['category'];
 					$content = $row['content'];
-					$friendlyAddress = $row['friendlyAddress'];
 					$username = $row['username'];
-					
+						
 					echo '<div class="news">';
 					echo '<h1>'.$name.'</h1>';
 					echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
-					echo substr($content, 0, 750).'... <a href="#">Czytaj dalej</a>';
+					echo $content;
 					echo '</div>';
+					$result->free();
 				}
-				$result->free();
+			}
+			else
+			{
+				if(isset($_GET['category']))
+				{
+					$category = $_GET['category'];
+					switch($category)
+					{
+						case "sprzet/plyta-glowna": $category="Płyta główna";
+						break;
+						case "sprzet/procesor": $category="Procesor";
+						break;
+						case "sprzet/karta-graficzna": $category="Karta graficzna";
+						break;
+						case "sprzet/pamiec-masowa": $category="Pamięć masowa";
+						break;
+						case "sprzet/karta-dzwiekowa": $category="Karta dźwiękowa";
+						break;
+						case "sprzet/pamiec-ram": $category="Pamięć RAM";
+						break;
+						case "sprzet/napedy-optyczne": $category="Napędy optyczne";
+						break;
+						case "sprzet/chlodzenie": $category="Chłodzenie";
+						break;
+						case "sprzet/zasilacz": $category="Zasilacz";
+						break;
+						case "oprogramowanie/systemy-operacyjne": $category="Systemy operacyjne";
+						break;
+						case "oprogramowanie/programowanie": $category="Programowanie";
+						break;
+						case "o-nas": $category="O nas";
+						break;
+						default: $category="Nieprawidłowy link";
+						break;
+					}
+					
+					$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.category='$category' ORDER BY articles.createDate DESC";
+				}
+				else
+				{
+					$query="SELECT articles.name, articles.createDate, articles.category, articles.content, articles.friendlyAddress, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id ORDER BY articles.createDate DESC LIMIT 10";
+				}
+				$result = $connection->query($query);
+				if(!$result)
+				{
+					throw new Exception($connection->error);
+				}
+				else
+				{
+					if(isset($category))
+					{
+						echo '<div class="category-header">'.$category.'</div>';
+					}
+					while($row = $result->fetch_assoc())
+					{
+						$name = $row['name'];
+						$createDate = $row['createDate'];
+						$category = $row['category'];
+						$content = $row['content'];
+						$friendlyAddress = $row['friendlyAddress'];
+						$username = $row['username'];
+						
+						echo '<div class="news">';
+						echo '<h1>'.$name.'</h1>';
+						echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
+						echo substr($content, 0, 750).'... <a href="index.php?friendlyAddress='.$friendlyAddress.'">Czytaj dalej</a>';
+						echo '</div>';
+					}
+					$result->free();
+				}
 			}
 			$connection->close();
 		}
