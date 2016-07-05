@@ -41,7 +41,8 @@
 			$createDate=$date = date('Y-m-d');
 			$category=$_POST['category'];
 			$content=$_POST['content'];
-			$friendlyAddress=str_replace(" ","-", $_POST['name']);
+			$friendlyAddress=strtr($category, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn')."/".strtr($name, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
+			$friendlyAddress=str_replace(" ","-", $friendlyAddress);
 			
 			if(!isset($_GET['article']))
 			{
