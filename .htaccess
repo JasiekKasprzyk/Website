@@ -5,3 +5,7 @@ Deny from all
 </FilesMatch>
 
 RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+RewriteRule ^(.*)$/([a-zA-Z]+)/$ /index.php/$1?category=$2 [L]

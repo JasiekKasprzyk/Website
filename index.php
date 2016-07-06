@@ -31,56 +31,56 @@
 		</div>
 		<div id="small-menu">
 			<ol id="small">
-				<li><a href="index.php">Start</a></li>
+				<li><a href="/Website/">Start</a></li>
 				
 				<li><a onclick="release(2)">Sprzęt</a></li>
 				
-				<li class="show2"><a href="index.php?category=sprzet/plyta-glowna">Płyta główna</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/procesor">Procesor</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/karta-graficzna">Karta graficzna</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/pamiec-ram">Pamięc RAM</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/chlodzenie">Chłodzenie</a></li>
-				<li class="show2"><a href="index.php?category=sprzet/zasilacz">Zasilacz</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/plyta-glowna">Płyta główna</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/procesor">Procesor</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/karta-graficzna">Karta graficzna</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/pamiec-ram">Pamięc RAM</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/chlodzenie">Chłodzenie</a></li>
+				<li class="show2"><a href="/Website/category=sprzet/zasilacz">Zasilacz</a></li>
 				
 				<li><a onclick="release(3)">Oprogramowanie</a></li>
 				
-				<li class="show3"><a href="index.php?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
-				<li class="show3"><a href="index.php?category=oprogramowanie/programowanie">Programowanie</a></li>
+				<li class="show3"><a href="/Website/?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
+				<li class="show3"><a href="/Website/?category=oprogramowanie/programowanie">Programowanie</a></li>
 				
-				<li><a href="index.php?category=o-nas">O nas</a></li>
+				<li><a href="/Website/?category=o-nas">O nas</a></li>
 			</ol>
 		</div>
 		<!-- MORE THAN 806PX -->
 		<div id="menu">
 			<ol id="big">
 				<li>
-					<a href="index.php">Start</a>
+					<a href="/Website/">Start</a>
 				</li>
 				<li>
 					<a href="#">Sprzęt</a>
 					<ul>
-						<li><a href="index.php?category=sprzet/plyta-glowna">Płyta główna</a></li>
-						<li><a href="index.php?category=sprzet/procesor">Procesor</a></li>
-						<li><a href="index.php?category=sprzet/karta-graficzna">Karta graficzna</a></li>
-						<li><a href="index.php?category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
-						<li><a href="index.php?category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
-						<li><a href="index.php?category=sprzet/pamiec-ram">Pamięc RAM</a></li>
-						<li><a href="index.php?category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
-						<li><a href="index.php?category=sprzet/chlodzenie">Chłodzenie</a></li>
-						<li><a href="index.php?category=sprzet/zasilacz">Zasilacz</a></li>
+						<li><a href="/Website/?category=sprzet/plyta-glowna">Płyta główna</a></li>
+						<li><a href="/Website/?category=sprzet/procesor">Procesor</a></li>
+						<li><a href="/Website/?category=sprzet/karta-graficzna">Karta graficzna</a></li>
+						<li><a href="/Website/?category=sprzet/pamiec-masowa">Pamięć masowa</a></li>
+						<li><a href="/Website/?category=sprzet/karta-dzwiekowa">Karta dźwiękowa</a></li>
+						<li><a href="/Website/?category=sprzet/pamiec-ram">Pamięc RAM</a></li>
+						<li><a href="/Website/?category=sprzet/napedy-optyczne">Napędy optyczne</a></li>
+						<li><a href="/Website/?category=sprzet/chlodzenie">Chłodzenie</a></li>
+						<li><a href="/Website/?category=sprzet/zasilacz">Zasilacz</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#">Oprogramowanie</a>
 					<ul>
-						<li><a href="index.php?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
-						<li><a href="index.php?category=oprogramowanie/programowanie">Programowanie</a></li>
+						<li><a href="/Website/?category=oprogramowanie/systemy-operacyjne">Systemy operacyjne</a></li>
+						<li><a href="/Website/?category=oprogramowanie/programowanie">Programowanie</a></li>
 					</ul>
 				</li>
-				<li><a href="index.php?category=o-nas">O nas</a></li>
+				<li><a href="/Website/?category=o-nas">O nas</a></li>
 			</ol>
 		</div>
 		<div class="container">
@@ -187,7 +187,7 @@
 						echo '<div class="news">';
 						echo '<h1>'.$name.'</h1>';
 						echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
-						echo substr($content, 0, 750).'... <a href="index.php?friendlyAddress='.$friendlyAddress.'">Czytaj dalej</a>';
+						echo substr($content, 0, 750).'... <a href="index?friendlyAddress='.$friendlyAddress.'">Czytaj dalej</a>';
 						echo '</div>';
 					}
 					$result->free();
