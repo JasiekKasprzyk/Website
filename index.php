@@ -108,19 +108,23 @@
 				}
 				else
 				{
-					$row = $result->fetch_assoc();
-					$name = $row['name'];
-					$createDate = $row['createDate'];
-					$category = $row['category'];
-					$content = $row['content'];
-					$username = $row['username'];
-						
-					echo '<div class="news">';
-					echo '<h1>'.$name.'</h1>';
-					echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
-					echo $content;
-					echo '</div>';
-					$result->free();
+					if($result->num_rows==1)
+					{
+						$row = $result->fetch_assoc();
+						$name = $row['name'];
+						$createDate = $row['createDate'];
+						$category = $row['category'];
+						$content = $row['content'];
+						$username = $row['username'];
+						echo $name
+						echo '<div class="news">';
+						echo '<h1>'.$name.'</h1>';
+						echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';
+						echo $content;
+						echo '</div>';
+						$result->free();
+					}
+					else echo "Error 404!";
 				}
 			}
 			else

@@ -4,6 +4,8 @@
 		function __construct($params)
 		{
 			parent::__construct();
+			require_once 'models/Index_model.php';
+			$this -> model = new Index_model();
 			if(isset($params[1]))
 			{
 				$action = "FullAddress";
@@ -18,12 +20,28 @@
 		
 		private function EmptyAddress()
 		{
-			echo "Ni ma nic!";
+			echo $this-> model -> getArticles();
 		}
 		
 		private function FullAddress($params)
 		{
-			print_r($params);
+			if(isset($params[3]))
+			{
+				$this -> errorAddress();
+			}
+			else if(isset($params[2]))
+			{
+				echo $this -> model -> getArticle($params);
+			}
+			else
+			{
+				echo $this -> model -> getArticlesInSpecificCategory($params);
+			}
+		}
+		
+		private function errorAddress()
+		{
+			echo "Error 404";
 		}
 			
 	}

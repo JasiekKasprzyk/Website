@@ -4,6 +4,8 @@
 		function __construct($params)
 		{
 			parent::__construct();
+			require_once 'models/Admin_panel_model.php';
+			$this -> model = new Admin_panel_model();
 			if(!isset($params[1]))
 			{
 				$action = "Index";
