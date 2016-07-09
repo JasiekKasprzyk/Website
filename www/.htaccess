@@ -5,4 +5,5 @@ Deny from all
 </FilesMatch>
 
 RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !\.(png|jpg|gif)$
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
