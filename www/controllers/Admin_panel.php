@@ -38,6 +38,7 @@
 			{
 				echo $this -> model -> getUserName();
 				echo $this -> model -> getTopMenu("standart");
+				echo $this -> model ->getArticleList();
 			}
 			else
 			{
@@ -48,12 +49,15 @@
 						echo $this -> model -> getUserName();
 						echo $this -> model -> getTopMenu("standart");
 						echo $this -> model -> getArticleList();
+						echo $this->model->writeViewArticleContent($params);
 					}
 					break;
 					case "upload":
 					{
 						echo $this -> model -> getUserName();
 						echo $this -> model -> getTopMenu("upload");
+						echo $this ->model->uploadFile();
+						echo $this ->model->getUploadedPhotos();
 					}
 					break;
 					case "edit":
@@ -61,6 +65,7 @@
 						echo $this -> model -> getUserName();
 						echo $this -> model -> getTopMenu("standart");
 						echo $this -> model -> getArticleList();
+						echo $this->model->writeEditArticleContent($params);
 					}
 					break;
 					case "new":
@@ -91,12 +96,12 @@
 					}
 				}
 			}
-			echo $this -> model -> getContent($version, $params);
+			//echo $this -> model -> getContent($version, $params);
 		}
 		
 		private function Error()
 		{
-			echo "B³¹d!";
+			echo "Bï¿½ï¿½d!";
 		}
 	}
 ?>

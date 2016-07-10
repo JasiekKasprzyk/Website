@@ -116,7 +116,7 @@
 						$category = $row['category'];
 						$content = $row['content'];
 						$username = $row['username'];
-						echo $name
+						echo $name;
 						echo '<div class="news">';
 						echo '<h1>'.$name.'</h1>';
 						echo '<h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>';

@@ -28,7 +28,6 @@
 				$password=$_POST['password'];
 				
 				$login=htmlentities($login, ENT_QUOTES, "UTF-8");
-				
 				try
 				{
 					$result = $this->connection->query(
@@ -103,147 +102,9 @@
 			}
 		}
 		
-		function getContent($version, $params)
+		function getUploadedPhotos()
 		{
-				if($version=="standart")
-				{
-					if(($params[2]=="view") || ($params[2]=="edit"))
-					{
-						if((isset($params[3]))||(isset($params[4]))||(isset($params[5])))
-						{
-							$friendlyAddress = $params[3]."/".$params[4]."/".$params[5];
-						}
-						else $friendlyAddress = "empty/empty/empty";
-						$query="SELECT articles.id, articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.friendlyAddress='$friendlyAddress'";
-						$result=$this ->connection->query($query);
-						if(!$result)
-						{
-							throw new Exception($this ->connection->error);
-						}
-						else
-						{
-							if($result->num_rows<1)
-							{
-								$text=$text."Error 404";
-							}
-							else
-							{
-								$line=$result->fetch_assoc();
-								$_SESSION['articleid']=$line['id'];
-								if($params[2]=="view")
-								{
-									$text ="<h1>".$line['name']."</h1>
-									<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>
-									<p>".$line['content'].'</p>
-									<div class="edit-content-menu">
-										<a href="/Website/www/admin_panel/session/edit/'.$line['friendlyAddress'].'">Edytuj</a>
-									</div>
-									<div class="edit-content-menu">
-										<a href="delete.php">Usuń</a>
-									</div>
-									<div style="clear: both"></div>';
-								}
-								else
-								{
-									$text = $text.'<form action="update.php?article='.$line['friendlyAddress'].'" method="post">
-									Tytuł:<br />
-									<input type="text" value="'.$line['name'].'" name="name"/><br />
-									Kategoria:<br />
-									<input type="text" value="'.$line['category'].'" name="category"/><br />
-									Zawartość: <br />
-									<textarea name="content">'.$line['content']."</textarea><br />";
-									if(isset($_SESSION['error'])) $text=$text.$_SESSION['error'];
-									$text=$text.'<input type="submit" value="Opublikuj"><br /><br />
-									</form>';
-								}
-								$result->close();
-							}
-						}
-					}
-					else
-					{
-						$text = $text.'<form action="update.php" method="post">
-						Tytuł:<br />
-						<input type="text" name="name"/><br />
-						Kategoria:<br />
-						<input type="text" name="category" /><br />
-						Zawartość: <br />
-						<textarea name="content"></textarea><br />';
-						if(isset($_SESSION['error'])) $text=$text.$_SESSION['error'];
-						$text = $text.'<input type="submit" value="Opublikuj"><br /><br />
-						</form>';
-					}
-					$text = $text.'</div><div style="clear: both"></div></div>';
-				}
-				else if($version=="upload")
-				{
-					if((isset($_FILES['fileToUpload']))&&(!empty($_FILES['fileToUpload']['tmp_name'])))
-					{
-						$target_directory ="files/";
-						$target_file = $target_directory.basename($_FILES['fileToUpload']['name']);
-						$name = basename($_FILES['fileToUpload']['name']);
-						$uploadOk = 1;
-						$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-						if(isset($_POST['submit']))
-						{
-							$check = getimagesize($_FILES['fileToUpload']['tmp_name']);
-							if($check !== false)
-							{
-								$uploadOk = 1;
-							}
-							else
-							{
-								$error = "Plik nie jest obrazkiem.";
-								$uploadOk = 0; 
-							}
-							$size = $_FILES['fileToUpload']['size'];
-							if ($size > 1024*1024*1024) 
-							{
-								$error = "Przepraszam, ale plik jest za duży. Możesz wysłać pliki do 100KB";
-								$uploadOk = 0;
-							}
-							$size = round($size/1024, 2);
-							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) 
-							{
-								echo "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
-								$uploadOk = 0;
-							}
-							
-							if ($uploadOk == 1) 
-							{
-								if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
-								{
-									$target_file = "/Website/www/files/".basename($_FILES['fileToUpload']['name']);
-									$authorId = $_SESSION['id'];
-									if(!$this ->connection->query("INSERT pictures VALUES (NULL, '$name', '$target_file', '$size', '$authorId')"))
-									{
-										throw new Exception($this ->connection->error);
-									}
-									else
-									{
-										$error = "Plik ". basename( $_FILES["fileToUpload"]["name"]). " został pomyślnie wysłany i zapisany.";	
-									}
-								} 
-								else 
-								{
-									$error = "Przepraszam, ale pojawił się błąd przy przesyłaniu pliku.";
-								}
-							}
-						}
-					}
-					$text = $text.'<div class="add-photo-menu">
-					<h1>Dodaj zdjęcie!</h1>
-					<form method="POST" ENCTYPE="multipart/form-data">
-						<input type="file" name="fileToUpload" id="fileToUpload" /><br />
-						<input type="submit" value="Wyślij!" name="submit" class="upload"/><br />
-					</form>';
-					if(isset($error))
-					{
-						$text = $text.'<span style="color: red">'.$error."</span>";
-					}
-					$text = $text.'</div>
-					<div class="photo-explorer">';
-
+					$text="";
 					$query="SELECT name, path, size FROM pictures";
 					$result=$this ->connection->query($query);
 					if(!$result)
@@ -262,8 +123,7 @@
 						}
 						$result->close();
 					}
-					$text = $text.'</div>';
-				}
+					return $text;
 		}
 		
 		function getArticleList()
@@ -294,7 +154,114 @@
 			}
 		}
 		
-		function getArticleContentFromDatabase($params)
+		
+		function writeViewArticleContent($params)
+		{
+			$line = $this->getArticleContentFromDatabase($params);
+			if(!isset($line['null']))
+			{
+				$text ="<h1>".$line['name']."</h1>
+				<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>
+				<p>".$line['content'].'</p>
+				<div class="edit-content-menu">
+				<a href="/Website/www/admin_panel/session/edit/'.$line['friendlyAddress'].'">Edytuj</a>
+				</div>
+				<div class="edit-content-menu">
+				<a href="delete.php">Usuń</a>
+				</div>
+				<div style="clear: both"></div>';
+				return $text;
+			}
+			else return "Error 404";
+		}
+		
+		function writeEditArticleContent($params)
+		{
+			$line = $this->getArticleContentFromDatabase($params);
+			if(!isset($line['null']))
+			{
+				$text ='<form action="update.php?article='.$line['friendlyAddress'].'" method="post">
+				Tytuł:<br />
+				<input type="text" value="'.$line['name'].'" name="name"/><br />
+				Kategoria:<br />
+				<input type="text" value="'.$line['category'].'" name="category"/><br />
+				Zawartość: <br />
+				<textarea name="content">'.$line['content']."</textarea><br />";
+				if(isset($_SESSION['error'])) $text=$text.$_SESSION['error'];
+				$text=$text.'<input type="submit" value="Opublikuj"><br /><br />
+				</form>';
+				return $text;
+			}
+			else return "Error 404";
+		}
+		
+		function uploadFile()
+		{
+			try
+			{
+				if((isset($_FILES['fileToUpload']))&&(!empty($_FILES['fileToUpload']['tmp_name'])))
+				{
+					$target_directory ="files/";
+					$target_file = $target_directory.basename($_FILES['fileToUpload']['name']);
+					$name = basename($_FILES['fileToUpload']['name']);
+					$uploadOk = 1;
+					$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+					if(isset($_POST['submit']))
+					{
+						$check = getimagesize($_FILES['fileToUpload']['tmp_name']);
+						if($check !== false)
+						{
+							$uploadOk = 1;
+						}
+						else
+						{
+							$error = "Plik nie jest obrazkiem.";
+							$uploadOk = 0;
+						}
+						$size = $_FILES['fileToUpload']['size'];
+						if ($size > 1024*1024*1024)
+						{
+							$error = "Przepraszam, ale plik jest za duży. Możesz wysłać pliki do 100KB";
+							$uploadOk = 0;
+						}
+						$size = round($size/1024, 2);
+						if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" )
+						{
+							echo "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
+							$uploadOk = 0;
+						}
+				
+						if ($uploadOk == 1)
+						{
+							if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
+							{
+								$target_file = "/Website/www/files/".basename($_FILES['fileToUpload']['name']);
+								$authorId = $_SESSION['id'];
+								if(!$this ->connection->query("INSERT pictures VALUES (NULL, '$name', '$target_file', '$size', '$authorId')"))
+								{
+									throw new Exception($this ->connection->error);
+								}
+								else
+								{
+									$error = "Plik ". basename( $_FILES["fileToUpload"]["name"]). " został pomyślnie wysłany i zapisany.";
+								}
+							}
+							else
+							{
+								$error = "Przepraszam, ale pojawił się błąd przy przesyłaniu pliku.";
+							}
+						}
+					}
+				}
+			}
+			catch(Exception $e)
+			{
+				$this ->getErrorMessage($e);
+				echo $this ->errorMessage;
+			}
+		}
+		
+		private function getArticleContentFromDatabase($params)
 		{
 			try
 			{
@@ -330,24 +297,5 @@
 				echo $this ->errorMessage;
 			}
 		}
-		
-		function writeViewArticleContent($line)
-		{
-			if(!isset($line['null']))
-			{
-				$text ="<h1>".$line['name']."</h1>
-				<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>
-				<p>".$line['content'].'</p>
-				<div class="edit-content-menu">
-				<a href="/Website/www/admin_panel/session/edit/'.$line['friendlyAddress'].'">Edytuj</a>
-				</div>
-				<div class="edit-content-menu">
-				<a href="delete.php">Usuń</a>
-				</div>
-				<div style="clear: both"></div>';
-			}
-			else return "Error 404";
-		}
-		
 	}
 ?>
