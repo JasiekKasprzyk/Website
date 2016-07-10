@@ -34,20 +34,63 @@
 		private function Session($params)
 		{
 			$this -> model -> isNotLogged();
-			echo $this -> model -> getGreeting();
 			if(!isset($params[2]))
 			{
-				$version="standart";
-			}
-			else if($params[2]=="upload")
-			{
-				$version="upload";
+				echo $this -> model -> getUserName();
+				echo $this -> model -> getTopMenu("standart");
 			}
 			else
 			{
-				$version="standart";
+				switch($params[2])
+				{
+					case "view":
+					{
+						echo $this -> model -> getUserName();
+						echo $this -> model -> getTopMenu("standart");
+						echo $this -> model -> getArticleList();
+					}
+					break;
+					case "upload":
+					{
+						echo $this -> model -> getUserName();
+						echo $this -> model -> getTopMenu("upload");
+					}
+					break;
+					case "edit":
+					{
+						echo $this -> model -> getUserName();
+						echo $this -> model -> getTopMenu("standart");
+						echo $this -> model -> getArticleList();
+					}
+					break;
+					case "new":
+					{
+						echo $this -> model -> getUserName();
+						echo $this -> model -> getTopMenu("standart");
+						echo $this -> model -> getArticleList();
+					}
+					break;
+					case "delete":
+					{
+					}
+					break;
+					case "delete-photo":
+					{
+					}
+					break;
+					case "logout":
+					{
+					}
+					break;
+					case "update":
+					{
+					}
+					default:
+					{
+						
+					}
+				}
 			}
-			echo $this -> model -> getTopMenu($version);
 			echo $this -> model -> getContent($version, $params);
 		}
 		

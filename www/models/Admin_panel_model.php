@@ -83,9 +83,9 @@
 			}
 		}
 		
-		function getGreeting()
+		function getUserName()
 		{
-			return '<div class="hello">Witaj, '.$_SESSION['username'].'!</div>';
+			return $_SESSION['username'];
 		}
 		
 		function getTopMenu($version)
@@ -105,37 +105,11 @@
 		
 		function getContent($version, $params)
 		{
-			try
-			{
-				$text = '';
 				if($version=="standart")
 				{
-					$text = $text.'<div id="main-bar"><div class="table">';
-					
-					$query="SELECT id, name, category, friendlyAddress FROM articles";
-					$result=$this ->connection->query($query);
-					if(!$result)
+					if(($params[2]=="view") || ($params[2]=="edit"))
 					{
-						throw new Exception($this ->connection->error);
-					}
-					else
-					{
-						while($line=$result->fetch_assoc())
-						{
-							$text = $text.'<div class="article-label"><a href="/Website/www/admin_panel/session/view/'.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></div>";
-						}
-						$result->close();
-					}
-					
-					$text = $text.'</div><div class="content">';
-					
-					if(!isset($params[2]))
-					{
-						$text = $text." ";
-					}
-					else if(($params[2]=="view") || ($params[2]=="edit"))
-					{
-						if((isset($params[3]))||(isset($params[3]))||(isset($params[3])))
+						if((isset($params[3]))||(isset($params[4]))||(isset($params[5])))
 						{
 							$friendlyAddress = $params[3]."/".$params[4]."/".$params[5];
 						}
@@ -158,7 +132,7 @@
 								$_SESSION['articleid']=$line['id'];
 								if($params[2]=="view")
 								{
-									$text = $text."<h1>".$line['name']."</h1>
+									$text ="<h1>".$line['name']."</h1>
 									<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>
 									<p>".$line['content'].'</p>
 									<div class="edit-content-menu">
@@ -290,7 +264,28 @@
 					}
 					$text = $text.'</div>';
 				}
-				return $text;
+		}
+		
+		function getArticleList()
+		{
+			try
+			{
+				$query="SELECT id, name, category, friendlyAddress FROM articles";
+				$result=$this ->connection->query($query);
+				if(!$result)
+				{
+					throw new Exception($this ->connection->error);
+				}
+				else
+				{
+					$text="";
+					while($line=$result->fetch_assoc())
+					{
+						$text = $text.'<div class="article-label"><a href="/Website/www/admin_panel/session/view/'.$line['friendlyAddress'].'">'.$line['name']."(".$line['category'].")"."</a></div>";
+					}
+					$result->close();
+					return $text;
+				}
 			}
 			catch(Exception $e)
 			{
@@ -298,5 +293,61 @@
 				echo $this ->errorMessage;
 			}
 		}
+		
+		function getArticleContentFromDatabase($params)
+		{
+			try
+			{
+				if((isset($params[3]))||(isset($params[4]))||(isset($params[5])))
+				{
+					$friendlyAddress = $params[3]."/".$params[4]."/".$params[5];
+				}
+				else $friendlyAddress = "empty/empty/empty";
+				$query="SELECT articles.id, articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.friendlyAddress='$friendlyAddress'";
+				$result=$this ->connection->query($query);
+				if(!$result)
+				{
+					throw new Exception($this ->connection->error);
+				}
+				else
+				{
+					if($result->num_rows<1)
+					{
+						$line['null'] = "null";
+					}
+					else
+					{
+						$line=$result->fetch_assoc();
+						$_SESSION['articleid']=$line['id'];
+						$result->close();
+					} 
+				}
+				return $line;
+			}
+			catch(Exception $e)
+			{
+				$this ->getErrorMessage($e);
+				echo $this ->errorMessage;
+			}
+		}
+		
+		function writeViewArticleContent($line)
+		{
+			if(!isset($line['null']))
+			{
+				$text ="<h1>".$line['name']."</h1>
+				<h6>".$line['category']." | Autor: ".$line['username']." | Data utworzenia: ".$line['createDate']."</h6>
+				<p>".$line['content'].'</p>
+				<div class="edit-content-menu">
+				<a href="/Website/www/admin_panel/session/edit/'.$line['friendlyAddress'].'">Edytuj</a>
+				</div>
+				<div class="edit-content-menu">
+				<a href="delete.php">Usuń</a>
+				</div>
+				<div style="clear: both"></div>';
+			}
+			else return "Error 404";
+		}
+		
 	}
 ?>
