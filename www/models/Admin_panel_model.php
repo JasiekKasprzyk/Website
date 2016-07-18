@@ -167,7 +167,7 @@
 				<a href="/Website/www/admin_panel/session/edit/'.$line['friendlyAddress'].'">Edytuj</a>
 				</div>
 				<div class="edit-content-menu">
-				<a href="delete.php">Usuń</a>
+				<a href="/Website/www/admin_panel//delete/'.$line['id'].'">Usuń</a>
 				</div>
 				<div style="clear: both"></div>';
 				return $text;
@@ -261,6 +261,27 @@
 			}
 		}
 		
+		function deleteArticle($params)
+		{
+			try 
+			{
+				$query = "DELETE FROM articles WHERE id='$params'";
+				if(!$this->connection->query($query))
+				{
+					throw new Exception($this->connection->error);
+				}
+				else
+				{
+					header('Location: /Website/www/admin_panel/session/');
+				}
+			} 
+			catch (Exception $e) 
+			{
+				$this ->getErrorMessage($e);
+				echo $this ->errorMessage;
+			}
+		}
+		
 		private function getArticleContentFromDatabase($params)
 		{
 			try
@@ -285,7 +306,6 @@
 					else
 					{
 						$line=$result->fetch_assoc();
-						$_SESSION['articleid']=$line['id'];
 						$result->close();
 					} 
 				}

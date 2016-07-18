@@ -77,6 +77,15 @@
 					break;
 					case "delete":
 					{
+						if(!isset($params[3]))
+						{
+							header('Location: /Website/www/admin_panel/session/');
+							Exit();
+						}
+						else 
+						{
+							$this->model->deleteArticle($params[3]);
+						}
 					}
 					break;
 					case "delete-photo":
@@ -96,12 +105,11 @@
 					}
 				}
 			}
-			//echo $this -> model -> getContent($version, $params);
 		}
 		
 		private function Error()
 		{
-			echo "B��d!";
+			echo "Błąd!";
 		}
 	}
 ?>
