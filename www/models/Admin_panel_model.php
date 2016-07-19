@@ -118,7 +118,7 @@
 							$text=$text.'<div class="photo-tile">
 							<img src="'.$line['path'].'" class="image" />
 							<div class="text1">'.$line['name']."(".$line['size'].'KB)</div>
-							<div class="text2"><div class="button-look"><a href="'.$line['path'].'">Obejrzyj</a></div><div class="button-delete"><a href="delete_photo.php?name='.$line['name'].'">Usuń</a></div></div>
+							<div class="text2"><div class="button-look"><a href="'.$line['path'].'">Obejrzyj</a></div><div class="button-delete"><a href="/Website/www/admin_panel/session/delete-photo/'.$line['name'].'">Usuń</a></div></div>
 							</div>';
 						}
 						$result->close();
@@ -279,6 +279,33 @@
 			{
 				$this ->getErrorMessage($e);
 				echo $this ->errorMessage;
+			}
+		}
+		
+		function deletePhoto($params)
+		{
+			try 
+			{
+				if(!$this->connection->query("DELETE FROM pictures WHERE name='$params'"))
+				{
+					throw new Exception($this->connection->error);
+				}
+				else
+				{
+					if(!unlink(realpath('files/'.$params)))
+					{
+						throw new Exception("File hasn't been deleted or doesn't exist.");
+					}
+					else
+					{
+						header('Location: /Website/www/admin_panel/session/upload/');
+					}
+				}
+			}
+			catch(Exception $e)
+			{
+				$this ->getErrorMessage($e);
+				echo $this->errorMessage;
 			}
 		}
 		

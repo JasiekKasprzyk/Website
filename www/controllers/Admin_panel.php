@@ -90,6 +90,15 @@
 					break;
 					case "delete-photo":
 					{
+						if(!isset($params[3]))
+						{
+							header('Location: /Website/www/admin_panel/session/upload');
+							exit();
+						}
+						else
+						{
+							$this->model->deletePhoto($params[3]);
+						}
 					}
 					break;
 					case "logout":
