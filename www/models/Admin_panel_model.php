@@ -91,13 +91,13 @@
 		{
 			if($version=="standart")
 			{
-				return '<div class="topbar-button"><a href="logout.php">Wyloguj się!</a></div>
+				return '<div class="topbar-button"><a href="/Website/www/admin_panel/session/logout/">Wyloguj się!</a></div>
 				<div class="topbar-button"><a href="/Website/www/admin_panel/session/new/">Nowy artykuł</a></div>
 				<div class="topbar-button"><a href="/Website/www/admin_panel/session/upload/">Dodaj plik</a></div>';
 			}
 			else if($version="upload")
 			{
-				return '<div class="topbar-button"><a href="logout.php">Wyloguj się!</a></div>
+				return '<div class="topbar-button"><a href="/Website/www/admin_panel/session/logout/">Wyloguj się!</a></div>
 				<div class="topbar-button"><a href="..">Artykuły</a></div>';
 			}
 		}
@@ -307,6 +307,13 @@
 				$this ->getErrorMessage($e);
 				echo $this->errorMessage;
 			}
+		}
+		
+		function logout()
+		{
+			session_unset();
+			
+			header('Location: /Website/www/admin_panel/');
 		}
 		
 		private function getArticleContentFromDatabase($params)

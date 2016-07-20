@@ -103,6 +103,7 @@
 					break;
 					case "logout":
 					{
+						$this->model->logout();
 					}
 					break;
 					case "update":
