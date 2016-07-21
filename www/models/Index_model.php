@@ -112,7 +112,7 @@
 			try
 			{
 				$friendlyAddress = $params[0]."/".$params[1]."/".$params[2];
-				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.friendlyAddress='$friendlyAddress'";
+				$query="SELECT articles.name, articles.createDate, articles.category, articles.content, administrators.username FROM articles, administrators WHERE articles.authorId=administrators.id AND articles.friendlyAddress LIKE '$friendlyAddress%'";
 				$result = $this -> connection->query($query);
 				if(!$result)
 				{

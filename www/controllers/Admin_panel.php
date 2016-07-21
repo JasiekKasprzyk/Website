@@ -108,6 +108,7 @@
 					break;
 					case "update":
 					{
+						$this -> model -> update($params);
 					}
 					default:
 					{

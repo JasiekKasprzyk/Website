@@ -180,11 +180,12 @@
 			$line = $this->getArticleContentFromDatabase($params);
 			if(!isset($line['null']))
 			{
-				$text ='<form action="update.php?article='.$line['friendlyAddress'].'" method="post">
+				$_SESSION['articleid']=$line['id'];
+				$text ='<form action="/Website/www/admin_panel/session/update/'.$line['friendlyAddress'].'" method="post">
 				Tytuł:<br />
 				<input type="text" value="'.$line['name'].'" name="name"/><br />
 				Kategoria:<br />
-				<input type="text" value="'.$line['category'].'" name="category"/><br />
+				<input type="text" value="'.$line['category'].'" name="friendlyAddress"/><br />
 				Zawartość: <br />
 				<textarea name="content">'.$line['content']."</textarea><br />";
 				if(isset($_SESSION['error'])) $text=$text.$_SESSION['error'];
@@ -316,16 +317,90 @@
 			header('Location: /Website/www/admin_panel/');
 		}
 		
+		function update($params)
+		{
+			if(!isset($_POST['name']))
+			{
+				header('Location: /Website/www/admin_panel/session/');
+				exit();
+			}
+			if((empty($_POST['name'])) || (empty($_POST['friendlyAddress'])) || (empty($_POST['content'])))
+			{
+				$_SESSION['error']='<span style="color: red;">Nie wszystkie pola zostały uzupełnione!</span><br />';
+				if((!isset($params[3])) || (!isset($params[4])) || (!isset($params[5])))
+				{
+					header('Location: /Website/www/admin_panel/session/new/');
+					exit();
+				}
+				else
+				{
+					header('Location: /Website/www/admin_panel/session/edit/'.$params[3]."/".$params[4]."/".$params[5]."/");
+					exit();
+				}
+			}
+			else
+			{
+				unset($_SESSION['error']);
+				$name=$_POST['name'];
+				$authorId=$_SESSION['id'];
+				$createDate=$date = date('Y-m-d');
+				
+				$friendlyAddress = $_POST['friendlyAddress'];
+				$addressArray = explode("/", $friendlyAddress);
+				$category=$addressArray[1];
+				$content=$_POST['content'];
+				$friendlyAddress=strtr($friendlyAddress, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn')."/".strtr($name, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
+				$friendlyAddress=str_replace(" ","-", $friendlyAddress);
+				$friendlyAddress=strtolower($friendlyAddress);
+				try 
+				{
+					if((!isset($params[3])) || (!isset($params[4])) || (!isset($params[5])))
+					{
+						//NEW ARTICLE
+						$query = "INSERT articles VALUES (NULL, '$name', '$authorId', '$createDate', '$category', '$content', '$friendlyAddress')";
+						if(!$this->connection->query($query))
+						{
+							throw new Exception($this ->connection->error);
+						}
+						else
+						{
+							header('Location: /Website/www/admin_panel/session/view/'.$friendlyAddress.'/');
+						}
+					
+					}
+					else
+					{
+						//OLD ARTICLE
+						$id=$_SESSION['articleid'];
+						$query="UPDATE articles SET name='$name', authorId='$authorId', createDate='$createDate', category='$category', content='$content', friendlyAddress='$friendlyAddress' WHERE id='$id'";
+						if(!$this->connection->query($query))
+						{
+							throw new Exception($this ->connection->error);
+						}
+						else
+						{
+							header('Location: /Website/www/admin_panel/session/view/'.$friendlyAddress.'');
+						}
+					}
+				}
+				catch(Exception $e)
+				{
+					$this ->getErrorMessage($e);
+					echo $this ->errorMessage;
+				}
+			}
+		}
+		
 		private function getArticleContentFromDatabase($params)
 		{
 			try
 			{
-				if((isset($params[3]))||(isset($params[4]))||(isset($params[5])))
+				if((isset($params[3]))&&(isset($params[4]))&&(isset($params[5])))
 				{
 					$friendlyAddress = $params[3]."/".$params[4]."/".$params[5];
 				}
 				else $friendlyAddress = "empty/empty/empty";
-				$query="SELECT articles.id, articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.friendlyAddress='$friendlyAddress'";
+				$query="SELECT articles.id, articles.name, administrators.username, articles.createDate, articles.category, articles.content, articles.friendlyAddress FROM articles, administrators WHERE articles.authorID = administrators.id AND articles.friendlyAddress LIKE '$friendlyAddress%'";
 				$result=$this ->connection->query($query);
 				if(!$result)
 				{
