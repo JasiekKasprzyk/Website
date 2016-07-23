@@ -4,6 +4,8 @@
 		function __construct($params)
 		{
 			parent::__construct();
+			$this ->view ->controller = "Index";
+			$this ->view ->page="EmptyAddress";
 			require_once 'models/Index_model.php';
 			$this -> model = new Index_model();
 			if(isset($params[1]))
@@ -21,6 +23,7 @@
 		private function EmptyAddress()
 		{
 			echo $this-> model -> getArticles();
+			$this ->view->Render();
 		}
 		
 		private function FullAddress($params)

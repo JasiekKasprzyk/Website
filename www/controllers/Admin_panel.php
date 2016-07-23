@@ -4,6 +4,7 @@
 		function __construct($params)
 		{
 			parent::__construct();
+			$this -> view -> controller = "Admin_panel";
 			require_once 'models/Admin_panel_model.php';
 			$this -> model = new Admin_panel_model();
 			session_start();
