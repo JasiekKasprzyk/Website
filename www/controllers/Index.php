@@ -22,7 +22,8 @@
 		
 		private function EmptyAddress()
 		{
-			echo $this-> model -> getArticles();
+			$this ->view ->page="EmptyAddress";
+			$this ->view -> content = $this-> model -> getArticles();
 			$this ->view->Render();
 		}
 		

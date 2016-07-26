@@ -70,7 +70,7 @@
 					break;
 					case "oprogramowanie/programowanie": $category="Programowanie";
 					break;
-					case "o-nas": $category="O nas";
+					case "o-nas/o-nas": $category="O nas";
 					break;
 					default: $category="Nieprawidłowy link";
 					break;

@@ -7,7 +7,6 @@ class View
 	
 	public function Render()
 	{
-		require_once 'views/Header.php';
 		if (isset($this->controller)&& isset($this->page))
 		{
 			$file = 'views/'.$this->controller.'/'.$this->page.".php";
