@@ -94,7 +94,7 @@
 						$friendlyAddress = $row['friendlyAddress'];
 						$username = $row['username'];
 						
-						$text = $text.'<div class="news"><h1>'.$name.'</h1><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.substr($content, 0, 750).'... <a href="index?friendlyAddress='.$friendlyAddress.'">Czytaj dalej</a></div>';
+						$text = $text.'<div class="news"><h1>'.$name.'</h1><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.substr($content, 0, 750).'... <a href="/Website/www/'.$friendlyAddress.'">Czytaj dalej</a></div>';
 					}
 					$result->free();
 					return $text;

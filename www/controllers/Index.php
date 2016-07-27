@@ -39,7 +39,9 @@
 			}
 			else
 			{
-				echo $this -> model -> getArticlesInSpecificCategory($params);
+				$this->view->page="ArticlesInSpecificCategory";
+				$this->view->content = $this -> model -> getArticlesInSpecificCategory($params);
+				$this->view->Render();
 			}
 		}
 		

@@ -7,12 +7,12 @@
 	<meta name="description" content="(Opis od 155 do 160 znaków)." />
 	<meta name="keywords" content="Tagi, tagi, tagi" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
-	<link rel="stylesheet" href="../style.css" type="text/css" />
-	<link rel="stylesheet" href="../css/fontello.css" type="text/css" />
+	<link rel="stylesheet" href="../../style.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/fontello.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script src="../small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
+	<script src="../../small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
 </head>
 
 
@@ -20,7 +20,7 @@
 	<div class="container-fluid">
 		<div class="row header">
 			<div class="title">
-				<img src="files/logo.png" id="logo" />
+				<img src="../files/logo.png" id="logo" />
 				<br />
 				Onlykom
 			</div>
