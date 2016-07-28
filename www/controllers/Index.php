@@ -35,7 +35,9 @@
 			}
 			else if(isset($params[2]))
 			{
-				echo $this -> model -> getArticle($params);
+				$this->view->page="Article";
+				$this->view->content = $this -> model -> getArticle($params);
+				$this->view->Render();
 			}
 			else
 			{
