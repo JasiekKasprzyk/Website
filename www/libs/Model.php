@@ -2,7 +2,7 @@
 	class Model
 	{
 		private $HOST = "localhost";
-		private $DB_USER = "root";
+		private $DB_USER = "oot";
 		private $DB_PASSWORD = "";
 		private $DB_NAME = "website";
 		private $isConnected = false;
@@ -49,7 +49,7 @@
 		
 		public function getErrorMessage($e)
 		{
-			$this ->errorMessage = '<div class="news"><h1>B³¹d serwera! Przepraszamy za niedogodnoœci i prosimy o odwiedzenie naszej strony w innym terminie!</h1></div>'.'Informacja deweloperska:'.$e;
+			$this ->errorMessage = '<div class="news"><h1>BÅ‚Ä…d serwera! Przepraszamy za niedogodnoÅ›ci i prosimy o odwiedzenie naszej strony w innym terminie!</h1></div>';//.'Informacja deweloperska:'.$e;
 		}
 	}
 ?>

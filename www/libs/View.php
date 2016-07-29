@@ -14,7 +14,7 @@ class View
 		if(isset($file) && file_exists($file)) require_once $file;
 		else
 		{
-			require_once 'views/Error.php';
+			require_once 'views/Error/Error.php';
 		}
 	}
 }

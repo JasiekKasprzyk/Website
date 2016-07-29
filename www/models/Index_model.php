@@ -72,7 +72,7 @@
 					break;
 					case "o-nas/o-nas": $category="O nas";
 					break;
-					default: $category="Nieprawidłowy link";
+					default: return "ERROR";
 					break;
 				}
 						
@@ -134,7 +134,7 @@
 					}
 					else
 					{
-						$text = "Error 404!";
+						$text = "ERROR";
 					}
 					return $text;
 				}

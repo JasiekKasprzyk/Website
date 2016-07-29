@@ -37,19 +37,35 @@
 			{
 				$this->view->page="Article";
 				$this->view->content = $this -> model -> getArticle($params);
-				$this->view->Render();
+				if ($this->view->content=="ERROR")
+				{
+					$this->errorAddress();
+				}
+				else 
+				{
+					$this->view->Render();
+				}
 			}
 			else
 			{
 				$this->view->page="ArticlesInSpecificCategory";
 				$this->view->content = $this -> model -> getArticlesInSpecificCategory($params);
-				$this->view->Render();
+				if ($this->view->content=="ERROR")
+				{
+					$this->errorAddress();
+				}
+				else 
+				{
+					$this->view->Render();
+				}
 			}
 		}
 		
-		private function errorAddress()
+		public function errorAddress()
 		{
-			echo "Error 404";
+			$this->view->controller="Error";
+			$this->view->page="Error";
+			$this->view->Render();
 		}
 			
 	}
