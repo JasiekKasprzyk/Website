@@ -37,7 +37,6 @@
 			catch(Exception $e)
 			{
 				$this -> getErrorMessage($e);
-				echo $this -> errorMessage;
 			}
 		}
 		
@@ -103,7 +102,6 @@
 			catch(Exception $e)
 			{
 				$this -> getErrorMessage($e);
-				echo $this -> errorMessage;
 			}
 		}
 		
@@ -142,7 +140,6 @@
 			catch(Exception $e)
 			{
 				$this ->getErrorMessage($e);
-				echo $this ->errorMessage;
 			}
 		}
 	}

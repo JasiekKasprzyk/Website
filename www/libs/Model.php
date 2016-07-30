@@ -2,7 +2,7 @@
 	class Model
 	{
 		private $HOST = "localhost";
-		private $DB_USER = "oot";
+		private $DB_USER = "root";
 		private $DB_PASSWORD = "";
 		private $DB_NAME = "website";
 		private $isConnected = false;
@@ -35,7 +35,6 @@
 			catch(Exception $e)
 			{
 				$this -> getErrorMessage($e);
-				echo $this -> errorMessage;
 			}
 		}
 		
@@ -49,7 +48,12 @@
 		
 		public function getErrorMessage($e)
 		{
-			$this ->errorMessage = '<div class="news"><h1>Błąd serwera! Przepraszamy za niedogodności i prosimy o odwiedzenie naszej strony w innym terminie!</h1></div>';//.'Informacja deweloperska:'.$e;
+			$this->view = new View();
+			$this->view->controller="Error";
+			$this->view->page="ErrorWithDatabase";
+			$this->view->Render();
+			echo 'Informacja deweloperska:'.$e;
+			exit();
 		}
 	}
 ?>
