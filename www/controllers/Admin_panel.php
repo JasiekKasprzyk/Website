@@ -5,6 +5,7 @@
 		{
 			parent::__construct();
 			$this -> view -> controller = "Admin_panel";
+			$this -> view -> page= "Index";
 			require_once 'models/Admin_panel_model.php';
 			$this -> model = new Admin_panel_model();
 			session_start();
@@ -27,9 +28,11 @@
 		
 		private function Index()
 		{
+			$this -> view -> page= "Index";
 			$this -> model -> isLogged();
 			$this -> model -> loginProcess();
-			echo $this -> model -> error();
+			$this ->view->error = $this -> model -> error();
+			$this->view->Render();
 		}
 			
 		private function Session($params)

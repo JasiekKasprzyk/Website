@@ -52,7 +52,7 @@
 									
 								unset($_SESSION['error']);
 								$result->close();
-								header('Location: session');
+								header('Location: /Website/www/admin_panel/session');
 							}
 							else
 							{
@@ -68,7 +68,6 @@
 				catch(Exception $e)
 				{
 					$this ->getErrorMessage($e);
-					echo $this ->errorMessage;
 				}
 			}
 		}
