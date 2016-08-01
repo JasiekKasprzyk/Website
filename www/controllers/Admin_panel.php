@@ -40,9 +40,11 @@
 			$this -> model -> isNotLogged();
 			if(!isset($params[2]))
 			{
-				echo $this -> model -> getUserName();
-				echo $this -> model -> getTopMenu("standart");
-				echo $this -> model ->getArticleList();
+				$this->view->page="Session";
+				$this->view->username= $this -> model -> getUserName();
+				$this->view->topmenu =  $this -> model -> getTopMenu("standart");
+				$this->view->articleList =  $this -> model ->getArticleList();
+				$this->view->Render();
 			}
 			else
 			{
