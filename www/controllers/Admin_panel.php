@@ -52,10 +52,12 @@
 				{
 					case "view":
 					{
-						echo $this -> model -> getUserName();
-						echo $this -> model -> getTopMenu("standart");
-						echo $this -> model -> getArticleList();
-						echo $this->model->writeViewArticleContent($params);
+						$this->view->page="View";
+						$this->view->username= $this -> model -> getUserName();
+						$this->view->topmenu= $this -> model -> getTopMenu("standart");
+						$this->view->articleList= $this -> model -> getArticleList();
+						$this->view->content= $this->model->writeViewArticleContent($params);
+						$this->view->Render();
 					}
 					break;
 					case "upload":
