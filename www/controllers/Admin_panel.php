@@ -62,10 +62,12 @@
 					break;
 					case "upload":
 					{
-						echo $this -> model -> getUserName();
-						echo $this -> model -> getTopMenu("upload");
-						echo $this ->model->uploadFile();
-						echo $this ->model->getUploadedPhotos();
+						$this->view->page="Upload";
+						$this->view->username = $this -> model -> getUserName();
+						$this->view->topmenu = $this -> model -> getTopMenu("upload");
+						$this ->model->uploadFile();
+						$this->view->uploadedPhotos = $this ->model->getUploadedPhotos();
+						$this->view->Render();
 					}
 					break;
 					case "edit":

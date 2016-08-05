@@ -227,7 +227,7 @@
 						$size = round($size/1024, 2);
 						if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" )
 						{
-							echo "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
+							$error = "Przepraszam, ale możesz tylko wysłać pliki: JPG, PNG, JPEG lub GIF";
 							$uploadOk = 0;
 						}
 				
@@ -251,6 +251,8 @@
 								$error = "Przepraszam, ale pojawił się błąd przy przesyłaniu pliku.";
 							}
 						}
+						
+						$_SESSION['error'] = $error;
 					}
 				}
 			}
