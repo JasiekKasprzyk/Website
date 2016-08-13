@@ -23,8 +23,8 @@ body
 }
 .login-interface
 {
-	width: 303px;
-	border: 1px solid white;
+	width: 290px;
+	border: 2px solid #1196C2;
 	border-radius: 10px;
 	padding: 10px;
 	margin-left: auto;
@@ -37,27 +37,62 @@ input[type=text].login
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 300px;
+	width: 100%;
 	height: 30px;
-	font-size: 30px;
+	font-size: 20px;
+	box-sizing: border-box;
+	border: 2px solid #999999;
+	background-color: #EEEEEE;
+	border-radius: 5px;
+	outline: none;
+	padding: 20px;
+}
+input[type=text].login:focus
+{
+	border: 2px solid #1196C2;
+	background-color: #55DAF6;
+	color: #006390;
 }
 input[type=password].login
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 300px;
+	width: 100%;
 	height: 30px;
-	font-size: 30px;
+	font-size: 20px;
+	box-sizing: border-box;
+	border: 2px solid #999999;
+	background-color: #EEEEEE;
+	border-radius: 5px;
+	outline: none;
+	padding: 20px;
+}
+input[type=password].login:focus
+{
+	border: 2px solid #1196C2;
+	background-color: #55DAF6;
+	color: #006390;
 }
 input[type=submit].login
 {
-	width: 300px;
-	height: 40px;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	margin-top: 10px;
+	width: 100%;
+	height: 30px;
+	border: 2px solid #1196C2;
+	background-color: #22A7D3;
+	border-radius: 5px;
+	outline: none;
+	color: white;
 	font-size: 20px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+input[type=submit].login:hover
+{
+	background-color: #0086C2;
+}
+input[type=submit].login:focus
+{
+	background-color: #0086C2;
 }
 .topbar
 {
@@ -273,17 +308,74 @@ input[type=submit].article:hover
 	margin: 0;
 	padding: 0;
 }
+.fileUpload
+{
+	position: relative;
+	overflow: hidden;
+	background-color: #1196C2;
+	width: 90px;
+	font-size: 12px;
+	float: left;
+	padding: 10px;
+	box-sizing: border-box;
+	margin-top: 2px;
+	border-radius: 5px;
+	color: white;
+}
+.fileUpload:hover
+{
+	background-color: #0086C2;
+}
 input[type=file].upload
 {
-	background-color: #1196C2;
-	margin: 5px;
-	padding: 10px;
-	width: 250px;
+	position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+input#uploadFile
+{
+	width: 150px;
+	margin-right: 10px;
 	box-sizing: border-box;
+	float: left;
+	font-size: 12px;
+	padding: 10px;
+	border: 2px solid #999999;
+	background-color: #EEEEEE;
+}
+.whole-input
+{
+	text-align: left;
+	width: 250px;
+	margin: 0 auto;
 }
 input[type=submit].upload
 {
 	width: 250px;
+	height: 30px;
+	border: 2px solid #1196C2;
+	background-color: #22A7D3;
+	border-radius: 5px;
+	outline: none;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+input[type=submit].upload:hover
+{
+	background-color: #0086C2;
+}
+input[type=submit].upload:focus
+{
+	background-color: #0086C2;
 }
 
 .photo-explorer
