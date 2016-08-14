@@ -13,10 +13,13 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="/Website/views/Index/small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
+	<script type="text/javascript" src="/Website/views/Index/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="/Website/views/Index/scrollUpScript.js"></script>
 </head>
 
 
 <body onload="hide()">
+	<div class="scrollup"><a href="#"><i class="icon-up-open"></i></a></div>
 	<div class="container-fluid">
 		<div class="row header">
 			<div class="title">
