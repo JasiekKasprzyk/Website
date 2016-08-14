@@ -183,11 +183,41 @@
 				Tytuł:<br />
 				<input type="text" value="'.$line['name'].'" name="name" class="article"/><br />
 				Kategoria:<br />
-				<input type="text" value="'.$line['category'].'" name="friendlyAddress" class="article"/><br />
+				<select name="category" id="category" class="article">
+					<option '; if($params[3]=='sprzet') $text = $text."selected"; $text = $text.'>Sprzęt</option>
+					<option '; if($params[3]=='oprogramowanie') $text=$text.'selected'; $text=$text.'>Oprogramowanie</option>
+					<option '; if($params[3]=='o-nas') $text=$text.'selected'; $text=$text.'>O nas</option>
+				</select>
+				<select name="subcategory" id="subcategory" class="article">';
+					if($params[3]=='sprzet')
+					{
+						$text=$text.
+						'<option '; if($params[4]=='plyta-glowna') $text=$text.'selected'; $text=$text.'>Płyta główna</option>
+						<option '; if($params[4]=='procesor') $text=$text.'selected'; $text=$text.'>Procesor</option>
+						<option '; if($params[4]=='karta-graficzna') $text=$text.'selected'; $text=$text.'>Karta graficzna</option>
+						<option '; if($params[4]=='pamiec-masowa') $text=$text.'selected'; $text=$text.'>Pamięć masowa</option>
+						<option '; if($params[4]=='karta-dzwiekowa') $text=$text.'selected'; $text=$text.'>Karta dźwiękowa</option>
+						<option '; if($params[4]=='pamiec-ram') $text=$text.'selected'; $text=$text.'>Pamięć RAM</option>
+						<option '; if($params[4]=='napedy-optyczne') $text=$text.'selected'; $text=$text.'>Napędy optyczne</option>
+						<option '; if($params[4]=='chlodzenie') $text=$text.'selected'; $text=$text.'>Chłodzenie</option>
+						<option '; if($params[4]=='zasilacz') $text=$text.'selected'; $text=$text.'>Zasilacz</option>';
+					}
+					if ($params[3]=='oprogramowanie')
+					{
+						$text=$text.
+						'<option '; if($params[4]=='systemy-operacyjne') $text=$text.'selected'; $text=$text.'>Systemy operacyjne</option>
+						<option '; if($params[4]=='programowanie') $text=$text.'selected'; $text=$text.'>Programowanie</option>';
+					}
+					if ($params[3]=='o-nas')
+					{
+						$text=$text.'<option selected>O nas</option>';
+					}
+				$text=$text.'</select><br />
+				<script src="/Website/views/Admin_panel/option-script.js" language="javascript" type="text/javascript"></script>
 				Zawartość: <br />
-				<textarea name="content">'.$line['content']."</textarea><br />";
+				<textarea name="content" class="article">'.$line['content']."</textarea><br />";
 				if(isset($_SESSION['errorA'])) $text=$text.$_SESSION['errorA'];
-				$text=$text.'<input type="submit" value="Opublikuj"><br /><br />
+				$text=$text.'<input type="submit" value="Opublikuj" class="article"><br /><br />
 				</form>';
 				return $text;
 			}
@@ -321,7 +351,7 @@
 				header('Location: /Website/admin_panel/session/');
 				exit();
 			}
-			if((empty($_POST['name'])) || (empty($_POST['friendlyAddress'])) || (empty($_POST['content'])))
+			if((empty($_POST['name'])) || (empty($_POST['subcategory'])) || (empty($_POST['category'])) || (empty($_POST['content'])))
 			{
 				$_SESSION['errorA']='<span style="color: red;">Nie wszystkie pola zostały uzupełnione!</span><br />';
 				if((!isset($params[3])) || (!isset($params[4])) || (!isset($params[5])))
@@ -341,12 +371,29 @@
 				$name=$_POST['name'];
 				$authorId=$_SESSION['id'];
 				$createDate=$date = date('Y-m-d');
-				
-				$friendlyAddress = $_POST['friendlyAddress'];
-				$addressArray = explode("/", $friendlyAddress);
-				$category=$addressArray[1];
+				$friendlyAddress = $_POST['category']."/".$_POST['subcategory'];
+				$category=$_POST['subcategory'];
 				$content=$_POST['content'];
-				$friendlyAddress=strtr($friendlyAddress, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn')."/".strtr($name, 'ĘÓĄŚŁŻŹĆŃęóąśłżźćń', 'EOASLZZCNeoaslzzcn');
+				$transformation = array(
+						"Ę" => "E",
+						"Ó" => "O",
+						"Ą" => "A",
+						"Ś" => "S",
+						"Ł" => "L",
+						"Ż" => "Z",
+						"Ź" => "Z",
+						"Ć" => "C",
+						"Ń" => "N",
+						"ę" => "e",
+						"ó" => "o",
+						"ą" => "a",
+						"ś" => "s",
+						"ł" => "l",
+						"ż" => "z",
+						"ź" => "z",
+						"ć" => "c",
+						"ń" => "n");
+				$friendlyAddress=strtr($friendlyAddress, $transformation)."/".strtr($name, $transformation);
 				$friendlyAddress=str_replace(" ","-", $friendlyAddress);
 				$friendlyAddress=strtolower($friendlyAddress);
 				try 

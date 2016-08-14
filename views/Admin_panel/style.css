@@ -33,26 +33,7 @@ body
 	margin-bottom: auto;
 	height: 214px;
 }
-input[type=text].login
-{
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-	height: 30px;
-	font-size: 20px;
-	box-sizing: border-box;
-	border: 2px solid #999999;
-	background-color: #EEEEEE;
-	border-radius: 5px;
-	outline: none;
-	padding: 20px;
-}
-input[type=text].login:focus
-{
-	border: 2px solid #1196C2;
-	background-color: #55DAF6;
-	color: #006390;
-}
+input[type=text].login,
 input[type=password].login
 {
 	margin-left: auto;
@@ -66,11 +47,48 @@ input[type=password].login
 	border-radius: 5px;
 	outline: none;
 	padding: 20px;
+	margin-top: 15px;
 }
+input[type=text].login:focus,
 input[type=password].login:focus
 {
 	border: 2px solid #1196C2;
 	background-color: #55DAF6;
+	color: #006390;
+}
+input.login::-webkit-input-placeholder
+{
+	color: #999;
+}
+input.login:focus::-webkit-input-placeholder
+{
+	color: #006390;
+}
+
+input.login::-moz-placeholder
+{
+	color: #999;
+}
+input.login:focus::-moz-placeholder
+{
+	color: #006390;
+}
+
+input.login:-moz-placeholder
+{
+	color: #999;
+}
+input.login:focus:-moz-placeholder
+{
+	color: #006390;
+}
+
+input.login:-ms-input-placeholder
+{
+	color: #999;
+}
+input.login:focus:-ms-input-placeholder
+{
 	color: #006390;
 }
 input[type=submit].login
@@ -84,7 +102,7 @@ input[type=submit].login
 	color: white;
 	font-size: 20px;
 	cursor: pointer;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 input[type=submit].login:hover
 {
@@ -247,6 +265,32 @@ input[type=text].article:focus
 	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
 	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
 	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+}
+
+select.article
+{
+	width: calc(50% - 2px);
+	background-color: #EEEEEE;
+	border: 2px solid #999999;
+	height: 30px;
+	font-size: 15px;
+	border-radius: 5px;
+	outline: none;
+	cursor: pointer;
+}
+
+select.article:focus
+{
+	border: 2px solid #1196C2;
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	-moz-box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+	box-shadow: 0px 0px 15px 5px rgba(204,204,204,0.9);
+}
+
+select.article > option
+{
+	background-color: #EEEEEE;
+	cursor: pointer;
 }
 
 textarea.article
