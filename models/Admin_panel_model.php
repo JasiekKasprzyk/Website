@@ -370,7 +370,7 @@
 				unset($_SESSION['errorA']);
 				$name=$_POST['name'];
 				$authorId=$_SESSION['id'];
-				$createDate=$date = date('Y-m-d');
+				$createDate=$date = date('Y-m-d G:i');
 				$friendlyAddress = $_POST['category']."/".$_POST['subcategory'];
 				$category=$_POST['subcategory'];
 				$content=$_POST['content'];
