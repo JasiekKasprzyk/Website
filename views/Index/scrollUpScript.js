@@ -1,12 +1,24 @@
-jQuery(function($)
+var isVisible = true;
+function changeVisibility()
 {
-	$.scrollTo(0);
+	isVisible = true;
+}
+jQuery(
+function($)
+{
 	
-	$('.scrollup').click(function(){ $.scrollTo($('body'), 1000);});
+	$.scrollTo(0);
+	$('.scrollup').click(function()
+		{
+		$('.scrollup').fadeOut();
+		isVisible=false;
+		$.scrollTo($('body'), 1000);
+		setTimeout(changeVisibility,1000)
+		});
 	
 	$(window).scroll(function()
 			{
-				if($(this).scrollTop()>300) $('.scrollup').fadeIn();
+				if($(this).scrollTop()>300 && isVisible==true) $('.scrollup').fadeIn();
 				else $('.scrollup').fadeOut();
 			}
 			
