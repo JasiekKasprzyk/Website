@@ -215,7 +215,11 @@
 				$text=$text.'</select><br />
 				<script src="/Website/views/Admin_panel/option-script.js" language="javascript" type="text/javascript"></script>
 				Zawartość: <br />
-				<textarea name="content" class="article">'.$line['content']."</textarea><br />";
+				<textarea name="content" class="article">'.$line['content'].'</textarea><br />
+				<script type="text/javascript">
+				CKEDITOR.replace("content");
+				</script>';
+				
 				if(isset($_SESSION['errorA'])) $text=$text.$_SESSION['errorA'];
 				$text=$text.'<input type="submit" value="Opublikuj" class="article"><br /><br />
 				</form>';
@@ -351,7 +355,7 @@
 				header('Location: /Website/admin_panel/session/');
 				exit();
 			}
-			if((empty($_POST['name'])) || (empty($_POST['subcategory'])) || (empty($_POST['category'])) || (empty($_POST['content'])))
+			if((empty($_POST['name'])) || (empty($_POST['subcategory'])) || (empty($_POST['category'])))
 			{
 				$_SESSION['errorA']='<span style="color: red;">Nie wszystkie pola zostały uzupełnione!</span><br />';
 				if((!isset($params[3])) || (!isset($params[4])) || (!isset($params[5])))
