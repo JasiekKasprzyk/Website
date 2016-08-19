@@ -149,7 +149,7 @@ input[type=submit].login:focus
 	width: calc(25% - 10px);
 	border: 1px solid #ffffff;
 	height: 30px;
-	padding: 5px;
+	padding-bottom: 5px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -163,6 +163,7 @@ input[type=submit].login:focus
 	text-decoration: none;
 	color: white;
 	display: block;
+	padding: 5px;
 }
 .topbar-button:hover a
 {
@@ -196,7 +197,7 @@ input[type=submit].login:focus
 	width: calc(100%-20px);
 	text-align: center;
 	margin: 5px;
-	padding: 5px;
+	padding: 0px;
 	background-color: #1196C2;
 }
 
@@ -205,6 +206,7 @@ input[type=submit].login:focus
 	text-decoration: none;
 	color: white;
 	display: block;
+	padding: 5px;
 }
 
 .article-label:hover
@@ -522,6 +524,7 @@ input[type=submit].upload:focus
 		float: none;
 		margin-left: auto;
 		margin-right: auto;
+		
 	}
 	.table
 	{
