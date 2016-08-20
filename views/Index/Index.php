@@ -16,14 +16,12 @@
 	<script type="text/javascript" src="/Website/views/Index/jquery.scrollTo.min.js"></script>
 	<script type="text/javascript" src="/Website/views/Index/scrollUpScript.js"></script>
 </head>
-
-
 <body onload="hide()">
+	<div class="scrollup"><a href="#"><i class="icon-up-open"></i></a></div>
 	<div class="container-fluid">
-		<div class="scrollup"><a href="#"><i class="icon-up-open"></i></a></div>
 		<div class="row header">
 			<div class="title">
-				<img src="../files/logo.png" id="logo" />
+				<img src="/Website/files/logo.png" id="logo" />
 				<br />
 				Onlykom
 			</div>

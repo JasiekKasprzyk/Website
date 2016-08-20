@@ -5,7 +5,6 @@
 		{
 			parent::__construct();
 			$this -> view -> controller = "Admin_panel";
-			$this -> view -> page= "Index";
 			require_once 'models/Admin_panel_model.php';
 			$this -> model = new Admin_panel_model();
 			session_start();
@@ -27,11 +26,11 @@
 		
 		private function Index()
 		{
-			$this -> view -> page= "Index";
 			$this -> model -> isLogged();
 			$this -> model -> loginProcess();
 			$this ->view->error = $this -> model -> error();
-			$this->view->Render();
+			$this->view->Render("Head");
+			$this->view->Render("Index");
 		}
 			
 		private function Session($params)
@@ -39,11 +38,13 @@
 			$this -> model -> isNotLogged();
 			if(!isset($params[2]))
 			{
-				$this->view->page="Session";
 				$this->view->username= $this -> model -> getUserName();
 				$this->view->topmenu =  $this -> model -> getTopMenu("standart");
 				$this->view->articleList =  $this -> model ->getArticleList();
-				$this->view->Render();
+				$this->view->Render("Head");
+				$this->view->Render("Topmenu");
+				$this->view->Render("Mainbar");
+				$this->view->Render("Session");
 			}
 			else
 			{
@@ -51,7 +52,6 @@
 				{
 					case "view":
 					{
-						$this->view->page="View";
 						$this->view->username= $this -> model -> getUserName();
 						$this->view->topmenu= $this -> model -> getTopMenu("standart");
 						$this->view->articleList= $this -> model -> getArticleList();
@@ -60,22 +60,28 @@
 						{
 							$this->errorAddress();
 						}
-						else $this->view->Render();
+						else
+						{
+							$this->view->Render("Head");
+							$this->view->Render("Topmenu");
+							$this->view->Render("Mainbar");
+							$this->view->Render("View");
+						}
 					}
 					break;
 					case "upload":
 					{
-						$this->view->page="Upload";
 						$this->view->username = $this -> model -> getUserName();
 						$this->view->topmenu = $this -> model -> getTopMenu("upload");
 						$this ->model->uploadFile();
 						$this->view->uploadedPhotos = $this ->model->getUploadedPhotos();
-						$this->view->Render();
+						$this->view->Render("Head");
+						$this->view->Render("Topmenu");
+						$this->view->Render("Upload");
 					}
 					break;
 					case "edit":
 					{
-						$this->view->page="View";
 						$this->view->username = $this -> model -> getUserName();
 						$this->view->topmenu=$this -> model -> getTopMenu("standart");
 						$this->view->articleList= $this -> model -> getArticleList();
@@ -84,16 +90,24 @@
 						{
 							$this->errorAddress();
 						}
-						else $this->view->Render();
+						else 
+						{
+							$this->view->Render("Head");
+							$this->view->Render("Topmenu");
+							$this->view->Render("Mainbar");
+							$this->view->Render("View");
+						}
 					}
 					break;
 					case "new":
 					{
-						$this->view->page="New";
 						$this->view->username = $this -> model -> getUserName();
 						$this->view->topmenu = $this -> model -> getTopMenu("standart");
 						$this->view->articleList = $this -> model -> getArticleList();
-						$this->view->Render();
+						$this->view->Render("Head");
+						$this->view->Render("Topmenu");
+						$this->view->Render("Mainbar");
+						$this->view->Render("New");
 					}
 					break;
 					case "delete":
@@ -142,8 +156,7 @@
 		public function errorAddress()
 		{
 			$this->view->controller="Error";
-			$this->view->page="Error";
-			$this->view->Render();
+			$this->view->Render("Error");
 		}
 	}
 ?>

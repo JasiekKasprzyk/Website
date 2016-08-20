@@ -5,11 +5,11 @@ class View
 	{
 	}
 	
-	public function Render()
-	{
-		if (isset($this->controller)&& isset($this->page))
+	public function Render($name)
+	{	
+		if (isset($this->controller))
 		{
-			$file = 'views/'.$this->controller.'/'.$this->page.".php";
+			$file = 'views/'.$this->controller.'/'.$name.".php";
 		}
 		if(isset($file) && file_exists($file)) require_once $file;
 		else

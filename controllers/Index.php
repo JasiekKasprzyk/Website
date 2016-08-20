@@ -5,7 +5,6 @@
 		{
 			parent::__construct();
 			$this ->view ->controller = "Index";
-			$this ->view ->page="EmptyAddress";
 			require_once 'models/Index_model.php';
 			$this -> model = new Index_model();
 			if(isset($params[1]))
@@ -22,9 +21,8 @@
 		
 		private function EmptyAddress()
 		{
-			$this ->view ->page="EmptyAddress";
 			$this ->view -> content = $this-> model -> getArticles();
-			$this ->view->Render();
+			$this->view->Render("Index");
 		}
 		
 		private function FullAddress($params)
@@ -35,7 +33,6 @@
 			}
 			else if(isset($params[2]))
 			{
-				$this->view->page="Article";
 				$this->view->content = $this -> model -> getArticle($params);
 				if ($this->view->content=="ERROR")
 				{
@@ -43,12 +40,11 @@
 				}
 				else 
 				{
-					$this->view->Render();
+					$this->view->Render("Index");
 				}
 			}
 			else
 			{
-				$this->view->page="ArticlesInSpecificCategory";
 				$this->view->content = $this -> model -> getArticlesInSpecificCategory($params);
 				if ($this->view->content=="ERROR")
 				{
@@ -56,7 +52,7 @@
 				}
 				else 
 				{
-					$this->view->Render();
+					$this->view->Render("Index");
 				}
 			}
 		}
@@ -64,8 +60,7 @@
 		public function errorAddress()
 		{
 			$this->view->controller="Error";
-			$this->view->page="Error";
-			$this->view->Render();
+			$this->view->Render("Error");
 		}
 			
 	}
