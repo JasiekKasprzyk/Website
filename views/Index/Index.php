@@ -7,14 +7,14 @@
 	<meta name="description" content="(Opis od 155 do 160 znaków)." />
 	<meta name="keywords" content="Tagi, tagi, tagi" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chroma=1" />
-	<link rel="stylesheet" href="/Website/views/Index/style.css" type="text/css" />
-	<link rel="stylesheet" href="/Website/views/Index/css/fontello.css" type="text/css" />
+	<link rel="stylesheet" href="/Website/Styles/Index.css" type="text/css" />
+	<link rel="stylesheet" href="/Website/Styles/css/fontello.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script src="/Website/views/Index/small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
-	<script type="text/javascript" src="/Website/views/Index/jquery.scrollTo.min.js"></script>
-	<script type="text/javascript" src="/Website/views/Index/scrollUpScript.js"></script>
+	<script src="/Website/Scripts/small-device-nav-button-script.js" language="javascript" type="text/javascript"></script>
+	<script type="text/javascript" src="/Website/Scripts/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="/Website/Scripts/scrollUpScript.js"></script>
 </head>
 <body onload="hide()">
 	<div class="scrollup"><a href="#"><i class="icon-up-open"></i></a></div>
