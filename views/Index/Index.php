@@ -95,7 +95,13 @@
 			</div>
 		</div>
 		<div id="footer">
-			Wszelkie prawa zastrzeżone &copy; Onlykom 2016
+			<div id="footer-text">
+			2016 | Onlykom &copy; Dziękuję za wizytę!
+			</div>
+			<div id="footer-menu">
+				<a href="/Website">Start</a> | <a href="/Website/sprzet/">Sprzęt</a> | <a href="/Website/oprogramowanie">Oprogramowanie</a> |<br/> <a href="/Website/o-nas">O nas</a> | <a href="#">Darowizna</a> | <a href="#">Kontakt</a>
+			</div>
+			<div style="clear: both"></div>
 		</div>
 	</div>
 </body>
