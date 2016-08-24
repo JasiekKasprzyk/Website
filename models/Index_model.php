@@ -28,7 +28,7 @@
 						$content = $row['content'];
 						$friendlyAddress = $row['friendlyAddress'];
 						$username = $row['username'];
-						$text = $text.'<div class="news"><h1>'.$name.'</h1><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.substr($content, 0, 750).'... <a href="/Website/'.$friendlyAddress.'">Czytaj dalej</a></div>';
+						$text = $text.'<div class="news"><a href="/Website/'.$friendlyAddress.'"><h1>'.$name.'</h1></a><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.$content.'</div>';
 					}
 					return $text;
 					$result->free();
@@ -93,7 +93,7 @@
 						$friendlyAddress = $row['friendlyAddress'];
 						$username = $row['username'];
 						
-						$text = $text.'<div class="news"><h1>'.$name.'</h1><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.substr($content, 0, 750).'... <a href="/Website/'.$friendlyAddress.'">Czytaj dalej</a></div>';
+						$text = $text.'<div class="news"><a href="/Website/'.$friendlyAddress.'"><h1>'.$name.'</h1></a><h6>Data utworzenia: '.$createDate.' | Kategoria: '.$category.' | Autor: '.$username.'</h6>'.$content.'</div>';
 					}
 					$result->free();
 					return $text;
