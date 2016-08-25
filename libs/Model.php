@@ -50,8 +50,7 @@
 		{
 			$this->view = new View();
 			$this->view->controller="Error";
-			$this->view->page="ErrorWithDatabase";
-			$this->view->Render();
+			$this->view->Render("ErrorWithDatabase");
 			echo 'Informacja deweloperska:'.$e;
 			exit();
 		}

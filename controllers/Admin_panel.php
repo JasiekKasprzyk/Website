@@ -155,8 +155,8 @@
 		
 		public function errorAddress()
 		{
-			$this->view->controller="Error";
-			$this->view->Render("Error");
+			header('Location: /Website/errorcontroller');
+			exit();
 		}
 	}
 ?>
